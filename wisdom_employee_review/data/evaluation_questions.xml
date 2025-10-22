@@ -1,0 +1,418 @@
+<odoo>
+    <record id="eval_q1" model="hr.employee.evaluation.question">
+        <field name="sequence">10</field>
+        <field name="name">Modul de rezolvare a sarcinilor de serviciu</field>
+    </record>
+    <record id="eval_q1_a1" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q1"/>
+        <field name="sequence">10</field>
+        <field name="name">Rezolvă sarcinile de serviciu cu foarte multă competență, responsabilitate și inițiativă, mereu atent la remedierea eventualelor erori.</field>
+        <field name="score">15</field>
+        <field name="column">C10</field>
+    </record>
+    <record id="eval_q1_a2" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q1"/>
+        <field name="sequence">20</field>
+        <field name="name">Rezolvă sarcinile de serviciu cu competență, cu atenție și responsabilitate.</field>
+        <field name="score">12</field>
+        <field name="column">C11</field>
+    </record>
+    <record id="eval_q1_a3" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q1"/>
+        <field name="sequence">30</field>
+        <field name="name">In general, rezolvă bine sarcinile de serviciu fără o implicare deosebită.</field>
+        <field name="score">9</field>
+        <field name="column">C12</field>
+    </record>
+    <record id="eval_q1_a4" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q1"/>
+        <field name="sequence">40</field>
+        <field name="name">Nu este suficient de interesat de modul de realizare a sarcinilor de serviciu.</field>
+        <field name="score">6</field>
+        <field name="column">C13</field>
+    </record>
+    <record id="eval_q1_a5" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q1"/>
+        <field name="sequence">50</field>
+        <field name="name">Realizează iraţional sarcinile de serviciu. Nu este interesat de realizarea în bune condiţii a sarcinilor, remarcându-se frecvent prin incompetenţă.</field>
+        <field name="score">3</field>
+        <field name="column">C14</field>
+    </record>
+
+    <record id="eval_q2" model="hr.employee.evaluation.question">
+        <field name="sequence">70</field>
+        <field name="name">Randamentul in munca</field>
+    </record>
+
+    <record id="eval_q2_a1" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q2"/>
+        <field name="sequence">80</field>
+        <field name="name">Are un comportament foarte corect, niciodată cu abateri</field>
+        <field name="score">15</field>
+        <field name="column">C19</field>
+    </record>
+    <record id="eval_q2_a2" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q2"/>
+        <field name="sequence">90</field>
+        <field name="name">Foarte rar are abateri.</field>
+        <field name="score">12</field>
+        <field name="column">C20</field>
+    </record>
+    <record id="eval_q2_a3" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q2"/>
+        <field name="sequence">100</field>
+        <field name="name">Uneori are abateri.</field>
+        <field name="score">9</field>
+        <field name="column">C21</field>
+    </record>
+    <record id="eval_q2_a4" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q2"/>
+        <field name="sequence">110</field>
+        <field name="name">Destul de frecvent are abateri.</field>
+        <field name="score">56</field>
+        <field name="column">C22</field>
+    </record>
+    <record id="eval_q2_a5" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q2"/>
+        <field name="sequence">120</field>
+        <field name="name">Foarte des are abateri.</field>
+        <field name="score">3</field>
+        <field name="column">C23</field>
+    </record>
+
+    <record id="eval_q3" model="hr.employee.evaluation.question">
+        <field name="sequence">130</field>
+        <field name="name">Spirit de inițiativă</field>
+    </record>
+
+
+    <record id="eval_q3_a1" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q3"/>
+        <field name="sequence">140</field>
+        <field name="name">Relativ frecvent</field>
+        <field name="score">10</field>
+        <field name="column">C28</field>
+
+    </record>
+    <record id="eval_q3_a2" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q3"/>
+        <field name="sequence">150</field>
+        <field name="name">Uneori</field>
+        <field name="score">8</field>
+        <field name="column">C29</field>
+    </record>
+    <record id="eval_q3_a3" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q3"/>
+        <field name="sequence">160</field>
+        <field name="name">Rar</field>
+        <field name="score">6</field>
+        <field name="column">C30</field>
+    </record>
+    <record id="eval_q3_a4" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q3"/>
+        <field name="sequence">170</field>
+        <field name="name">Extrem de rar</field>
+        <field name="score">4</field>
+        <field name="column">C31</field>
+    </record>
+    <record id="eval_q3_a5" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q3"/>
+        <field name="sequence">180</field>
+        <field name="name">Nu are</field>
+        <field name="score">2</field>
+        <field name="column">C32</field>
+    </record>
+
+    <record id="eval_q4" model="hr.employee.evaluation.question">
+        <field name="sequence">190</field>
+        <field name="name">Integrarare in colectiv, colaborare</field>
+    </record>
+
+    <record id="eval_q4_a1" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q4"/>
+        <field name="sequence">200</field>
+        <field name="name">Se încadrează foarte bine ; corespunde cerinţelor si chiar le depăşeşte.</field>
+        <field name="score">10</field>
+        <field name="column">C37</field>
+    </record>
+    <record id="eval_q4_a2" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q4"/>
+        <field name="sequence">210</field>
+        <field name="name">Se încadrează bine; corespunde cerinţelor.</field>
+        <field name="score">8</field>
+        <field name="column">C38</field>
+    </record>
+    <record id="eval_q4_a3" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q4"/>
+        <field name="sequence">220</field>
+        <field name="name">Se încadrează; corespunde cu indulgenţa cerintelor.</field>
+        <field name="score">6</field>
+        <field name="column">C39</field>
+    </record>
+    <record id="eval_q4_a4" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q4"/>
+        <field name="sequence">230</field>
+        <field name="name">Se încadreaza slab; corespunde cu greu cerinţelor.</field>
+        <field name="score">4</field>
+        <field name="column">C40</field>
+    </record>
+    <record id="eval_q4_a5" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q4"/>
+        <field name="sequence">240</field>
+        <field name="name">Se încadreaza foarte slab; nu corespunde cerinţelor.</field>
+        <field name="score">2</field>
+        <field name="column">C41</field>
+    </record>
+
+    <record id="eval_q5" model="hr.employee.evaluation.question">
+        <field name="sequence">250</field>
+        <field name="name">Capacitatea de autoperfectionare si valorificare a experientei dobindite</field>
+    </record>
+
+    <record id="eval_q5_a1" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q5"/>
+        <field name="sequence">260</field>
+        <field name="name">Se încadrează foarte bine ; corespunde cerinţelor si chiar le depăşeşte.</field>
+        <field name="score">10</field>
+        <field name="column">C46</field>
+    </record>
+    <record id="eval_q5_a2" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q5"/>
+        <field name="sequence">270</field>
+        <field name="name">Se încadrează bine; corespunde cerinţelor.</field>
+        <field name="score">8</field>
+        <field name="column">C47</field>
+    </record>
+    <record id="eval_q5_a3" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q5"/>
+        <field name="sequence">280</field>
+        <field name="name">Se încadrează; corespunde cu indulgenţa cerintelor.</field>
+        <field name="score">6</field>
+        <field name="column">C48</field>
+    </record>
+    <record id="eval_q5_a4" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q5"/>
+        <field name="sequence">290</field>
+        <field name="name">Se încadreaza slab; corespunde cu greu cerinţelor.</field>
+        <field name="score">4</field>
+        <field name="column">C49</field>
+    </record>
+    <record id="eval_q5_a5" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q5"/>
+        <field name="sequence">300</field>
+        <field name="name">Se încadreaza foarte slab; nu corespunde cerinţelor.</field>
+        <field name="score">2</field>
+        <field name="column">C50</field>
+    </record>
+
+    <record id="eval_q6" model="hr.employee.evaluation.question">
+        <field name="sequence">310</field>
+        <field name="name">Abilitati in utilizarea calculatorului si a echipamentelor informatice</field>
+    </record>
+
+
+    <record id="eval_q6_a1" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q6"/>
+        <field name="sequence">320</field>
+        <field name="name">Foarte bun</field>
+        <field name="score">5</field>
+        <field name="column">C55</field>
+    </record>
+    <record id="eval_q6_a2" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q6"/>
+        <field name="sequence">330</field>
+        <field name="name">Bun</field>
+        <field name="score">4</field>
+        <field name="column">C56</field>
+    </record>
+    <record id="eval_q6_a3" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q6"/>
+        <field name="sequence">340</field>
+        <field name="name">Mediocru</field>
+        <field name="score">3</field>
+        <field name="column">C57</field>
+    </record>
+    <record id="eval_q6_a4" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q6"/>
+        <field name="sequence">350</field>
+        <field name="name">Slab</field>
+        <field name="score">2</field>
+        <field name="column">C58</field>
+    </record>
+    <record id="eval_q6_a5" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q6"/>
+        <field name="sequence">360</field>
+        <field name="name">Foarte slab</field>
+        <field name="score">1</field>
+        <field name="column">C59</field>
+    </record>
+
+
+    <record id="eval_q7" model="hr.employee.evaluation.question">
+        <field name="sequence">370</field>
+        <field name="name">Organizarea eficienta a propriei activitati</field>
+    </record>
+
+    <record id="eval_q7_a1" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q7"/>
+        <field name="sequence">380</field>
+        <field name="name">Se incadrează întotdeauna în timp.</field>
+        <field name="score">10</field>
+        <field name="column">C64</field>
+    </record>
+
+    <record id="eval_q7_a2" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q7"/>
+        <field name="sequence">390</field>
+        <field name="name">In general se încadrează în timp.</field>
+        <field name="score">8</field>
+        <field name="column">C65</field>
+
+    </record>
+    <record id="eval_q7_a3" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q7"/>
+        <field name="sequence">400</field>
+        <field name="name">Ponderea încadrărilor / neâncadrărilor in timp este relativ egală.</field>
+        <field name="score">6</field>
+        <field name="column">C66</field>
+    </record>
+    <record id="eval_q7_a4" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q7"/>
+        <field name="sequence">410</field>
+        <field name="name">Manifestă dese neâncadrări în timp.</field>
+        <field name="score">4</field>
+        <field name="column">C67</field>
+    </record>
+    <record id="eval_q7_a5" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q7"/>
+        <field name="sequence">420</field>
+        <field name="name">Niciodată nu se încadrează in timp.</field>
+        <field name="score">2</field>
+        <field name="column">C68</field>
+    </record>
+
+    <record id="eval_q8" model="hr.employee.evaluation.question">
+        <field name="sequence">420</field>
+        <field name="name">Comunicarea, transmiterea informatiilor ( oral, scris )</field>
+    </record>
+
+
+    <record id="eval_q8_a1" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q8"/>
+        <field name="sequence">440</field>
+        <field name="name">Este foarte corect, disciplina de care dă dovadă poate servi ca model.</field>
+        <field name="score">10</field>
+        <field name="column">C73</field>
+    </record>
+    <record id="eval_q8_a2" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q8"/>
+        <field name="sequence">450</field>
+        <field name="name">In general este corect, se fereşte să comită erori grave.</field>
+        <field name="score">8</field>
+        <field name="column">C74</field>
+    </record>
+    <record id="eval_q8_a3" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q8"/>
+        <field name="sequence">460</field>
+        <field name="name">Uneori comite abateri disciplinare, dar de mică gravitate.</field>
+        <field name="score">6</field>
+        <field name="column">C75</field>
+    </record>
+    <record id="eval_q8_a4" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q8"/>
+        <field name="sequence">470</field>
+        <field name="name">Dese abateri disciplinare.</field>
+        <field name="score">4</field>
+        <field name="column">C76</field>
+    </record>
+    <record id="eval_q8_a5" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q8"/>
+        <field name="sequence">480</field>
+        <field name="name">Foarte rar respectă instrucţiunile.</field>
+        <field name="score">2</field>
+        <field name="column">C77</field>
+    </record>
+
+    <record id="eval_q9" model="hr.employee.evaluation.question">
+        <field name="sequence">490</field>
+        <field name="name">Relatii interpersonal(colegi, sefi, echipa)</field>
+    </record>
+
+    <record id="eval_q9_a1" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q9"/>
+        <field name="sequence">500</field>
+        <field name="name">Este foarte corect, disciplina de care dă dovadă poate servi ca model.</field>
+        <field name="score">15</field>
+        <field name="column">C82</field>
+    </record>
+    <record id="eval_q9_a2" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q9"/>
+        <field name="sequence">510</field>
+        <field name="name">In general este corect, se fereşte să comită erori grave.</field>
+        <field name="score">12</field>
+        <field name="column">C83</field>
+    </record>
+    <record id="eval_q9_a3" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q9"/>
+        <field name="sequence">520</field>
+        <field name="name">Uneori comite abateri disciplinare, dar de mică gravitate.</field>
+        <field name="score">9</field>
+        <field name="column">C84</field>
+    </record>
+    <record id="eval_q9_a4" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q9"/>
+        <field name="sequence">530</field>
+        <field name="name">Dese abateri disciplinare.</field>
+        <field name="score">6</field>
+        <field name="column">C85</field>
+    </record>
+    <record id="eval_q9_a5" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q9"/>
+        <field name="sequence">540</field>
+        <field name="name">Foarte rar respectă instrucţiunile.</field>
+        <field name="score">3</field>
+        <field name="column">C86</field>
+    </record>
+
+    <record id="eval_q10" model="hr.employee.evaluation.question">
+        <field name="sequence">550</field>
+        <field name="name">Atitudine pozitiva, plin de energie, tonic</field>
+    </record>
+
+    <record id="eval_q10_a1" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q10"/>
+        <field name="sequence">560</field>
+        <field name="name">Relativ frecvent</field>
+        <field name="score">10</field>
+        <field name="column">C91</field>
+    </record>
+    <record id="eval_q10_a2" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q10"/>
+        <field name="sequence">570</field>
+        <field name="name">Uneori</field>
+        <field name="score">8</field>
+        <field name="column">C92</field>
+    </record>
+    <record id="eval_q10_a3" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q10"/>
+        <field name="sequence">580</field>
+        <field name="name">Rar</field>
+        <field name="score">6</field>
+        <field name="column">C93</field>
+    </record>
+    <record id="eval_q10_a4" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q10"/>
+        <field name="sequence">590</field>
+        <field name="name">Extrem de rar</field>
+        <field name="score">4</field>
+        <field name="column">C94</field>
+    </record>
+    <record id="eval_q10_a5" model="hr.employee.evaluation.answer">
+        <field name="question_id" ref="eval_q10"/>
+        <field name="sequence">600</field>
+        <field name="name">Nu are</field>
+        <field name="score">2</field>
+        <field name="column">C95</field>
+    </record>
+
+</odoo>

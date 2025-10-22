@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="module_category_kw_email_validation" model="ir.module.category">
+        <field name="name">Email Validation</field>
+        <field name="sequence">30</field>
+    </record>
+
+    <record id="group_kw_email_validation_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id"
+               ref="kw_email_validation.module_category_kw_email_validation"/>
+    </record>
+
+    <record id="group_kw_email_validation_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id"
+               ref="kw_email_validation.module_category_kw_email_validation"/>
+        <field name="implied_ids"
+               eval="[(4, ref('kw_email_validation.group_kw_email_validation_user')),]"/>
+    </record>
+
+    <record id="group_kw_email_validation_admin" model="res.groups">
+        <field name="name">Admin</field>
+        <field name="category_id"
+               ref="kw_email_validation.module_category_kw_email_validation"/>
+        <field name="implied_ids"
+               eval="[(4, ref('kw_email_validation.group_kw_email_validation_manager')),]"/>
+        <field name="users"
+               eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+</odoo>

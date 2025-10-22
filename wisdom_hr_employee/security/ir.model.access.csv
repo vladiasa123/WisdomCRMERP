@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_res_donator,res.donator model,model_res_donator,wisdom_hr_employee.group_res_voluntar,1,1,0,0
+access_res_angajat,res.angajat model,model_res_angajat,wisdom_hr_employee.group_res_angajat,1,1,0,0
+access_res_voluntar,res.voluntar model,model_res_voluntar,wisdom_hr_employee.group_res_voluntar,1,1,0,0
+
+access_hr_employee_voluntar,hr.employee,model_hr_employee,wisdom_hr_employee.group_res_voluntar,1,1,0,0
+
+
+access_res_donator_admin,res.donator,model_res_donator,base.group_system,1,1,1,1
+access_res_angajat_admin,res.angajat,model_res_angajat,base.group_system,1,1,1,1
+access_res_voluntar_admin,res.voluntar,model_res_voluntar,base.group_system,1,1,1,1

@@ -1,0 +1,87 @@
+<odoo>
+    <!-- Courses Tree & Form -->
+    <record id="view_curs_tree" model="ir.ui.view">
+        <field name="name">curs.list</field>
+        <field name="model">curs.management</field>
+        <field name="arch" type="xml">
+            <list string="Cursuri">
+                <field name="name"/>
+                <field name="tip_curs"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_curs_form" model="ir.ui.view">
+        <field name="name">curs.form</field>
+        <field name="model">curs.management</field>
+        <field name="arch" type="xml">
+            <form string="Curs">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="tip_curs"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Beneficiary-Course Assignment Tree & Form -->
+    <record id="view_beneficiar_curs_tree" model="ir.ui.view">
+        <field name="name">beneficiar.curs.list</field>
+        <field name="model">beneficiar.curs</field>
+        <field name="arch" type="xml">
+            <list string="Cursuri Beneficiar">
+                <field name="beneficiari_id"/>
+                <field name="curs_id"/>
+                <field name="data_inceput"/>
+                <field name="data_sfarsit"/>
+                <field name="data_certificat"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_beneficiar_curs_form" model="ir.ui.view">
+        <field name="name">beneficiar.curs.form</field>
+        <field name="model">beneficiar.curs</field>
+        <field name="arch" type="xml">
+            <form string="Alocare Curs Beneficiar">
+                <sheet>
+                    <group>
+                        <field name="beneficiari_id"/>
+                        <field name="curs_id"/>
+                        <field name="data_inceput"/>
+                        <field name="data_sfarsit"/>
+                        <field name="data_certificat"/>
+                        <field name="certificat_file" filename="certificat_filename"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_curs" model="ir.actions.act_window">
+        <field name="name">Cursuri</field>
+        <field name="res_model">curs.management</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_beneficiar_curs" model="ir.actions.act_window">
+        <field name="name">Cursuri Beneficiar</field>
+        <field name="res_model">beneficiar.curs</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+
+    <!-- Courses Menu -->
+    <menuitem id="menu_cursuri_root" name="Cursuri" parent="menu_beneficiari_root" sequence="20"/>
+
+    <menuitem id="menu_cursuri_manage" name="Gestionare Cursuri"
+            parent="menu_cursuri_root" action="action_curs" sequence="1"/>
+
+    <menuitem id="menu_cursuri_alocare" name="Alocare Curs Beneficiar"
+            parent="menu_cursuri_root" action="action_beneficiar_curs" sequence="2"/>
+</odoo>

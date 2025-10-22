@@ -1,0 +1,54 @@
+<odoo>
+    <data>
+        <!-- Voluntar group -->
+        <record id="group_res_voluntar" model="res.groups">
+            <field name="name">Voluntar</field>
+            <field name="category_id" ref="base.group_system"/>
+        </record>
+
+        <!-- Angajat group -->
+        <record id="group_res_angajat" model="res.groups">
+            <field name="name">Angajat</field>
+            <field name="category_id" ref="base.group_system"/>
+        </record>
+
+        <!-- Donator group -->
+        <record id="group_res_donator" model="res.groups">
+            <field name="name">Donator</field>
+            <field name="category_id" ref="base.group_system"/>
+        </record>
+    </data>
+
+    <record id="employee_voluntar_rule" model="ir.rule">
+        <field name="name">Voluntar: Own Employee Record</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="groups" eval="[(4, ref('group_res_voluntar'))]"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="employee_angajat_rule" model="ir.rule">
+        <field name="name">Angajat: Own Employee Record</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="groups" eval="[(4, ref('group_res_angajat'))]"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="employee_donator_rule" model="ir.rule">
+        <field name="name">Donator: Own Employee Record</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="groups" eval="[(4, ref('group_res_donator'))]"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+</odoo>

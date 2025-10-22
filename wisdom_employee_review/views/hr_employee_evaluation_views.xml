@@ -1,0 +1,66 @@
+<odoo>
+  <!-- List -->
+    <record id="view_hr_employee_evaluation_list" model="ir.ui.view">
+        <field name="name">hr.employee.evaluation.list</field>
+        <field name="model">hr.employee.evaluation</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="date"/>
+                <field name="employee_id" />
+                <field name="total"/>
+                <field name="average"/>
+                <field name="final_score"/>
+            </list>
+        </field>
+    </record>
+
+  <!-- Form -->
+  <record id="view_hr_employee_evaluation_form" model="ir.ui.view">
+    <field name="name">hr.employee.evaluation.form</field>
+    <field name="model">hr.employee.evaluation</field>
+    <field name="arch" type="xml">
+      <form string="Employee Evaluation">
+        <header>
+          <button name="action_export_excel" type="object" string="Export to Excel" class="btn-primary"/>
+        </header>
+        <sheet>
+          <group>
+            <field name="employee_id" readonly="1"/>
+            <field name="date"/>
+            <field name="total" readonly="1"/>
+            <field name="average" readonly="1"/>
+            <field name="final_score" readonly="1"/>
+          </group>
+          <notebook>
+            <page string="Questions">
+              <field name="line_ids" nolabel="1">
+                <list editable="bottom">
+                  <field name="sequence" invisible="1"/>
+                  <field name="question_id" readonly="1"/>
+                  <field name="answer_id" domain="[('question_id', '=', question_id)]"/>
+                  <field name="score" readonly="1"/>
+                </list>
+              </field>
+            </page>
+            <page string="Notes">
+              <field name="note" nolabel="1" placeholder="Observații..."/>
+            </page>
+          </notebook>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!-- Action -->
+  <record id="action_hr_employee_evaluations" model="ir.actions.act_window">
+    <field name="name">Evaluations</field>
+    <field name="res_model">hr.employee.evaluation</field>
+    <field name="view_mode">list,form</field>
+  </record>
+
+  <!-- Menu -->
+  <menuitem id="menu_hr_employee_evaluations_root"
+            name="Evaluations"
+            parent="hr.menu_hr_root"
+            action="action_hr_employee_evaluations"/>
+</odoo>

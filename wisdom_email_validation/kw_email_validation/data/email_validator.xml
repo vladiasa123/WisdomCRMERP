@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="kw_email_validator_regexp" model="kw.email.validator">
+        <field name="name">regexp</field>
+        <field name="regexp">^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$</field>
+    </record>
+    <record id="kw_email_validator_neverbounce" model="kw.email.validator">
+        <field name="name">neverbounce</field>
+        <field name="url">https://api.neverbounce.com/v4/single/check?key={api_key}&amp;email={email}</field>
+    </record>
+    <record id="kw_email_validator_quickemailverification" model="kw.email.validator">
+        <field name="name">quickemailverification</field>
+        <field name="url">https://api.quickemailverification.com/v1/verify?apikey={api_key}&amp;email={email}</field>
+    </record>
+    <record id="kw_email_validator_millionverifier" model="kw.email.validator">
+        <field name="name">millionverifier</field>
+        <field name="url">https://api.millionverifier.com/api/v3/?api={api_key}&amp;email={email}&amp;timeout=10</field>
+    </record>
+    <record id="kw_email_validator_clearout" model="kw.email.validator">
+        <field name="name">clearout</field>
+        <field name="url">https://api.clearout.io/v2/email_verify/instant</field>
+    </record>
+    <record id="kw_email_validator_mailercheck" model="kw.email.validator">
+        <field name="name">mailercheck</field>
+        <field name="url">https://api.mailercheck.com/v1/verify/single</field>
+    </record>
+    <record id="kw_email_validator_mailgun" model="kw.email.validator">
+        <field name="name">mailgun</field>
+        <field name="url">https://api.mailgun.net/v4/address/validate</field>
+    </record>
+    <record id="kw_email_validator_sendpulse" model="kw.email.validator">
+        <field name="name">sendpulse</field>
+        <field name="url">https://api.sendpulse.com/emails/check</field>
+    </record>
+    <record id="kw_email_validator_zerobounce" model="kw.email.validator">
+        <field name="name">zerobounce</field>
+        <field name="url">https://api.zerobounce.net/v2/validate</field>
+    </record>
+
+</odoo>

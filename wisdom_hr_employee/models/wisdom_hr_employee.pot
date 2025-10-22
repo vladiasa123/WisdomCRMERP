@@ -1,0 +1,448 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* wisdom_hr_employee
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0-20250801\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-17 08:44+0000\n"
+"PO-Revision-Date: 2025-09-17 08:44+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_hr_employee__voluntar_abilitati
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__voluntar_abilitati
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_voluntar__abilitati
+msgid "Abilități"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields.selection,name:wisdom_hr_employee.selection__res_donator__status__activ
+#: model:ir.model.fields.selection,name:wisdom_hr_employee.selection__res_voluntar__status__activ
+msgid "Activ"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_donator__adresa
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__adresa
+msgid "Adresă"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_hr_employee__adresa
+msgid "Adresă Donator"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_hr_employee__voluntar_adresa
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__voluntar_adresa
+msgid "Adresă Voluntar"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_voluntar__adresa
+msgid "Adresă completă"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model,name:wisdom_hr_employee.model_res_angajat
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_hr_employee__angajat_id
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__angajat_id
+#: model:ir.model.fields.selection,name:wisdom_hr_employee.selection__hr_employee__user_type__angajat
+#: model:ir.model.fields.selection,name:wisdom_hr_employee.selection__res_users__user_type__angajat
+#: model:res.groups,name:wisdom_hr_employee.group_res_angajat
+msgid "Angajat"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model_terms:ir.ui.view,arch_db:wisdom_hr_employee.view_users_form_inherit_usertype
+msgid "Angajat Details"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model_terms:ir.ui.view,arch_db:wisdom_hr_employee.view_employee_form_inherit_extended
+#: model_terms:ir.ui.view,arch_db:wisdom_hr_employee.view_employee_profile_form_inherit_custom
+msgid "Angajat Info"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_hr_employee__angajat_cnp
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_hr_employee__voluntar_cnp
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_angajat__cnp
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__angajat_cnp
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__voluntar_cnp
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_voluntar__cnp
+msgid "CNP"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields.selection,name:wisdom_hr_employee.selection__res_angajat__employee_function__conducere
+msgid "Conducere"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_hr_employee__cont_creat_la
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_donator__cont_creat_la
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__cont_creat_la
+msgid "Cont creat la"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_angajat__create_uid
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_donator__create_uid
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_voluntar__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_angajat__create_date
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_donator__create_date
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_voluntar__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_hr_employee__voluntar_data_nasterii
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__voluntar_data_nasterii
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_voluntar__data_nasterii
+msgid "Data nașterii"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_hr_employee__voluntar_data_inregistrare
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__voluntar_data_inregistrare
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_voluntar__data_inregistrare
+msgid "Data înregistrării"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model_terms:ir.ui.view,arch_db:wisdom_hr_employee.view_users_form_inherit_usertype
+msgid "Date Utilizator"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_hr_employee__angajat_departament
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_angajat__departament_id
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__angajat_departament
+msgid "Departament"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_angajat__display_name
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_donator__display_name
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_voluntar__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_hr_employee__voluntar_disponibilitate
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__voluntar_disponibilitate
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_voluntar__disponibilitate
+msgid "Disponibilitate"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model,name:wisdom_hr_employee.model_res_donator
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_hr_employee__donator_id
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__donator_id
+#: model:ir.model.fields.selection,name:wisdom_hr_employee.selection__hr_employee__user_type__donator
+#: model:ir.model.fields.selection,name:wisdom_hr_employee.selection__res_users__user_type__donator
+msgid "Donator"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model_terms:ir.ui.view,arch_db:wisdom_hr_employee.view_users_form_inherit_usertype
+msgid "Donator Details"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model_terms:ir.ui.view,arch_db:wisdom_hr_employee.view_employee_form_inherit_extended
+#: model_terms:ir.ui.view,arch_db:wisdom_hr_employee.view_employee_profile_form_inherit_custom
+msgid "Donator Info"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_angajat__email
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_voluntar__email
+msgid "Email"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__angajat_email
+msgid "Email Angajat"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__voluntar_email
+msgid "Email Voluntar"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model,name:wisdom_hr_employee.model_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_angajat__employee_id
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_donator__employee_id
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_voluntar__employee_id
+msgid "Employee"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_angajat__employee_function
+msgid "Employee Function"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields.selection,name:wisdom_hr_employee.selection__res_angajat__employee_function__executie
+msgid "Executie"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model,name:wisdom_hr_employee.model_ir_http
+msgid "HTTP Routing"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#. odoo-javascript
+#: code:addons/wisdom_hr_employee/static/src/core/web/xml_thread_inherit.xml:0
+msgid "Hello, Voluntar!"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_angajat__id
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_donator__id
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_voluntar__id
+msgid "ID"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model_terms:ir.ui.view,arch_db:wisdom_hr_employee.view_employee_skills_inherit
+msgid "Import volunteer data"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields.selection,name:wisdom_hr_employee.selection__res_donator__status__inactiv
+#: model:ir.model.fields.selection,name:wisdom_hr_employee.selection__res_voluntar__status__inactiv
+msgid "Inactiv"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_angajat__write_uid
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_donator__write_uid
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_voluntar__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_angajat__write_date
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_donator__write_date
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_voluntar__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields.selection,name:wisdom_hr_employee.selection__res_voluntar__status__nou
+msgid "Nou"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_angajat__nume
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_donator__nume
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__angajat_nume
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__nume
+msgid "Nume"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_hr_employee__angajat_nume
+msgid "Nume Angajat"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_hr_employee__nume
+msgid "Nume Donator"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_hr_employee__voluntar_nume
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__voluntar_nume
+msgid "Nume Voluntar"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_voluntar__nume
+msgid "Nume complet"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields.selection,name:wisdom_hr_employee.selection__res_donator__tip__persoana_fizica
+msgid "Persoana Fizica"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields.selection,name:wisdom_hr_employee.selection__res_donator__tip__persoana_juridica
+msgid "Persoana Juridica"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields.selection,name:wisdom_hr_employee.selection__res_donator__status__potential
+msgid "Potentia"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model_terms:ir.ui.view,arch_db:wisdom_hr_employee.view_users_form_inherit_usertype
+msgid "Preferences"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_hr_employee__voluntar_preferinte
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__voluntar_preferinte
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_voluntar__preferinte
+msgid "Preferințe"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_hr_employee__preferinte_donatie
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_donator__preferinte_donatie
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__preferinte_donatie
+msgid "Preferințe Donație"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_angajat__prenume
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__angajat_prenume
+msgid "Prenume"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_hr_employee__angajat_prenume
+msgid "Prenume Angajat"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_voluntar__user_id
+msgid "Related User"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_hr_employee__angajat_rol
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_angajat__rol
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__angajat_rol
+msgid "Rol"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__angajat_function
+msgid "Rol Angajat"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model_terms:ir.ui.view,arch_db:wisdom_hr_employee.view_employee_tree_inherit
+msgid "Send email"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_hr_employee__status
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_donator__status
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__status
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_voluntar__status
+msgid "Status"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_hr_employee__voluntar_status
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__voluntar_status
+msgid "Status Voluntar"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_hr_employee__angajat_superior
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_angajat__superior_id
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__angajat_superior
+msgid "Superior direct"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields.selection,name:wisdom_hr_employee.selection__res_voluntar__status__suspendat
+msgid "Suspendat"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_angajat__telefon
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_donator__telefon
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__angajat_telefon
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__telefon
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_voluntar__telefon
+msgid "Telefon"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_hr_employee__angajat_telefon
+msgid "Telefon Angajat"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_hr_employee__telefon
+msgid "Telefon Donator"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_hr_employee__voluntar_telefon
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__voluntar_telefon
+msgid "Telefon Voluntar"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_hr_employee__tip
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_donator__tip
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__tip
+msgid "Tip"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model,name:wisdom_hr_employee.model_res_users
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_angajat__user_id
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_donator__user_id
+msgid "User"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model_terms:ir.ui.view,arch_db:wisdom_hr_employee.view_users_form_inherit_usertype
+msgid "User Category"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_hr_employee__user_type
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__user_type
+msgid "User Type"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model:ir.model,name:wisdom_hr_employee.model_res_voluntar
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_hr_employee__voluntar_id
+#: model:ir.model.fields,field_description:wisdom_hr_employee.field_res_users__voluntar_id
+#: model:ir.model.fields.selection,name:wisdom_hr_employee.selection__hr_employee__user_type__voluntar
+#: model:ir.model.fields.selection,name:wisdom_hr_employee.selection__res_users__user_type__voluntar
+#: model:res.groups,name:wisdom_hr_employee.group_res_voluntar
+msgid "Voluntar"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model_terms:ir.ui.view,arch_db:wisdom_hr_employee.view_users_form_inherit_usertype
+msgid "Voluntar Details"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model_terms:ir.ui.view,arch_db:wisdom_hr_employee.view_employee_form_inherit_extended
+#: model_terms:ir.ui.view,arch_db:wisdom_hr_employee.view_employee_profile_form_inherit_custom
+msgid "Voluntar Info"
+msgstr ""
+
+#. module: wisdom_hr_employee
+#: model_terms:ir.ui.view,arch_db:wisdom_hr_employee.view_users_form_inherit_usertype
+msgid "e.g. email@yourcompany.com"
+msgstr ""

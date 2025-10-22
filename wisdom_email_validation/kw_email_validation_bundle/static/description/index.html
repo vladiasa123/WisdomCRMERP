@@ -1,0 +1,379 @@
+<section style="max-width: 896px; margin: 0 auto;">
+    <div style="text-align: center;">
+        <h1 style="color:#875A7B;">Email Validation Bundle</h1>
+    </div>
+    <div style="text-align: center;">
+        <p>
+            <a href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html">
+                <img alt="License: LGPL-3"
+                     src="https://img.shields.io/badge/license-LGPL--3-blue.png"/></a>
+            <a href="https://kitworks.systems/">
+                <img alt="Kitworks Systems"
+                     src="https://img.shields.io/badge/maintainer-Kitworks-purple.png"/></a>
+        </p>
+        <p><br></p>
+    </div>
+</section>
+
+<section style="margin: 0 auto; max-width: 896px;">
+    <div>
+        <p>This module provides a complete bundle of all email validation modules for Odoo. 
+           It's designed as a comprehensive solution for validating email addresses across your entire 
+           Odoo system, helping you maintain high-quality contact data, improve deliverability rates, 
+           and reduce bounces in your email communications.</p>
+
+        <p>The Email Validation Suite offers:</p>
+        <ul>
+            <li><b>Multi-level Validation:</b> From basic syntax checking to advanced API-based verification</li>
+            <li><b>Complete Coverage:</b> Validation for contacts, CRM leads, employees, job applicants, event registrations, and mass mailing lists</li>
+            <li><b>Multiple Validation Methods:</b> Regular expression, DNS, SMTP, and various third-party API services</li>
+            <li><b>Visual Indicators:</b> Color-coded status indicators for email fields across all supported modules</li>
+            <li><b>Automatic Processing:</b> Background validation of new and existing email addresses</li>
+            <li><b>Manual Controls:</b> On-demand validation through action menus and a dedicated web interface</li>
+            <li><b>Flexible Configuration:</b> Customizable validation rules and priorities</li>
+        </ul>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto;">
+    <div>
+        <h3>Included Modules</h3>
+        
+        <h4>Core Functionality</h4>
+        <ul>
+            <li><b>kw_email_validation</b>: Base module providing the core validation framework, validation status tracking, and API integrations. Includes:
+                <ul>
+                    <li>Email syntax validation using regular expressions</li>
+                    <li>Validation status tracking (valid, invalid, pending)</li>
+                    <li>Integration with multiple third-party validation services</li>
+                    <li>Configurable validation rules and priorities</li>
+                    <li>Scheduled background validation</li>
+                </ul>
+            </li>
+            <li><b>kw_email_validation_web</b>: Provides a dedicated web interface for email validation, allowing:
+                <ul>
+                    <li>Individual email address validation</li>
+                    <li>Bulk validation through file upload</li>
+                    <li>Detailed validation results and statistics</li>
+                    <li>Export validation results to CSV</li>
+                </ul>
+            </li>
+        </ul>
+        
+        <h4>Validation Methods</h4>
+        <ul>
+            <li><b>kw_email_validation_dnspython</b>: Adds DNS-based validation capabilities:
+                <ul>
+                    <li>MX record verification</li>
+                    <li>A/AAAA record fallback checks</li>
+                    <li>SPF record analysis</li>
+                    <li>No external API dependencies</li>
+                </ul>
+            </li>
+            <li><b>kw_email_validation_smtp</b>: Adds SMTP-based validation capabilities:
+                <ul>
+                    <li>Mailbox existence verification</li>
+                    <li>SMTP handshake and RCPT TO command</li>
+                    <li>No external API dependencies or costs</li>
+                    <li>Higher accuracy than DNS-only checks</li>
+                </ul>
+            </li>
+        </ul>
+        
+        <h4>Module Integrations</h4>
+        <ul>
+            <li><b>kw_email_validation_contacts</b>: Integrates validation with Odoo Contacts:
+                <ul>
+                    <li>Validates email field in res.partner model</li>
+                    <li>Color indicators directly on email fields</li>
+                    <li>Manual validation through partner form actions</li>
+                </ul>
+            </li>
+            <li><b>kw_email_validation_crm</b>: Integrates validation with Odoo CRM:
+                <ul>
+                    <li>Validates email_from field in crm.lead model</li>
+                    <li>Color indicators in lead and opportunity forms</li>
+                    <li>Validation status filtering in list views</li>
+                </ul>
+            </li>
+            <li><b>kw_email_validation_hr</b>: Integrates validation with Odoo HR:
+                <ul>
+                    <li>Validates work_email field in hr.employee model</li>
+                    <li>Color indicators in employee forms</li>
+                    <li>Improves internal communication reliability</li>
+                </ul>
+            </li>
+            <li><b>kw_email_validation_hr_recruitment</b>: Integrates validation with Odoo Recruitment:
+                <ul>
+                    <li>Validates email_from field in hr.applicant model</li>
+                    <li>Color indicators in applicant forms</li>
+                    <li>Ensures reliable communication with candidates</li>
+                </ul>
+            </li>
+            <li><b>kw_email_validation_event</b>: Integrates validation with Odoo Events:
+                <ul>
+                    <li>Validates email field in event.registration model</li>
+                    <li>Color indicators in registration forms</li>
+                    <li>Ensures attendees receive event communications</li>
+                </ul>
+            </li>
+            <li><b>kw_email_validation_mass_mailing</b>: Integrates validation with Odoo Mass Mailing:
+                <ul>
+                    <li>Validates email field in mailing.contact model</li>
+                    <li>Color indicators in mailing contact forms</li>
+                    <li>Improves deliverability and sender reputation</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto;">
+    <div>
+        <h3>Technical Details</h3>
+        <p>
+            This is a meta-module that depends on all other email validation modules. 
+            It doesn't add any functionality itself but ensures that all email validation 
+            modules are installed and properly configured.
+        </p>
+        
+        <h4>Implementation</h4>
+        <ul>
+            <li>Automatic validation of email addresses across all supported models</li>
+            <li>Visual indicators for validation status in all relevant forms and lists</li>
+            <li>Manual validation through action menus where applicable</li>
+            <li>Automatic validation of existing emails upon module installation</li>
+        </ul>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto;">
+    <div>
+        <h3>Validation Services</h3>
+        <p>
+            The Email Validation Suite supports multiple validation methods and services:
+        </p>
+        
+        <h4>Built-in Validators (No API Key Required)</h4>
+        <ul>
+            <li><b>Regular Expression:</b> Basic syntax validation using pattern matching</li>
+            <li><b>DNS:</b> Verification of domain MX records (requires kw_email_validation_dnspython)</li>
+            <li><b>SMTP:</b> Mailbox existence verification (requires kw_email_validation_smtp)</li>
+        </ul>
+        
+        <h4>Third-Party API Services (API Key Required)</h4>
+        <ul>
+            <li><b>NeverBounce:</b> <a href="https://neverbounce.com/" target="_blank">https://neverbounce.com/</a> - Comprehensive email verification service</li>
+            <li><b>QuickEmailVerification:</b> <a href="https://quickemailverification.com/" target="_blank">https://quickemailverification.com/</a> - Fast and accurate email validation</li>
+            <li><b>MillionVerifier:</b> <a href="https://millionverifier.com/" target="_blank">https://millionverifier.com/</a> - Bulk email verification service</li>
+            <li><b>Clearout:</b> <a href="https://clearout.io/" target="_blank">https://clearout.io/</a> - Email verification and list cleaning</li>
+            <li><b>MailerCheck:</b> <a href="https://mailercheck.com/" target="_blank">https://mailercheck.com/</a> - Email verification service</li>
+            <li><b>Mailgun:</b> <a href="https://www.mailgun.com/" target="_blank">https://www.mailgun.com/</a> - Email validation API</li>
+            <li><b>SendPulse:</b> <a href="https://sendpulse.com/" target="_blank">https://sendpulse.com/</a> - Email verification service</li>
+            <li><b>ZeroBounce:</b> <a href="https://www.zerobounce.net/" target="_blank">https://www.zerobounce.net/</a> - Email validation and scoring</li>
+        </ul>
+        
+        <h4>Service Comparison</h4>
+        <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                <thead>
+                    <tr style="background-color: #875A7B; color: white;">
+                        <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Service</th>
+                        <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Accuracy</th>
+                        <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Speed</th>
+                        <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Price (per 1000)</th>
+                        <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Bulk Verification</th>
+                        <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">AI-scoring</th>
+                        <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Spam Trap Detection</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background-color: #f9f9f9;">
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">NeverBounce</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">High</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">High</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">$3.00</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">Yes</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">No</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">Partial</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">QuickEmailVerification</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">High</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">High</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">$2.00</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">Yes</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">No</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">Partial</td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9;">
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">MillionVerifier</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">Medium</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">High</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">$1.00</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">Yes</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">No</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">No</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">SendPulse</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">Medium</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">Medium</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">$2.00</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">Yes</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">No</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">No</td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9;">
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">ZeroBounce</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">High</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">High</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">$2.00</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">Yes</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">Yes</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">Yes</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">Clearout</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">High</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">High</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">$3.00</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">Yes</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">No</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">Yes</td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9;">
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">MailerCheck</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">High</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">High</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">$2.00</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">Yes</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">No</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">Yes</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">Mailgun</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">High</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">High</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">$1.00</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">Yes</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">No</td>
+                        <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">Yes</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <h4>Service Selection Recommendations</h4>
+        <ol>
+            <li><b>For small verification volumes</b>: ZeroBounce or Clearout - high accuracy but higher price.</li>
+            <li><b>For large verification volumes</b>: Mailgun or MillionVerifier - lower price, acceptable accuracy.</li>
+            <li><b>For integration with other services</b>:
+                <ul>
+                    <li>SendPulse - if you already use other SendPulse services.</li>
+                    <li>Mailgun - if you already use Mailgun services for email sending.</li>
+                </ul>
+            </li>
+            <li><b>For highest accuracy</b>: ZeroBounce with AI-scoring.</li>
+            <li><b>For spam trap detection</b>: Clearout, MailerCheck or Mailgun - have advanced spam trap detection capabilities.</li>
+            <li><b>For optimal price/quality ratio</b>: MailerCheck or Mailgun - high accuracy at a reasonable price.</li>
+        </ol>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto;">
+    <div>
+        <h3>Configuration Guide</h3>
+        
+        <h4>Initial Setup</h4>
+        <ol>
+            <li>Install the kw_email_validation_bundle module</li>
+            <li>Go to Email Validation &rarr; Configuration &rarr; Validators</li>
+            <li>Configure at least one validator:</li>
+            <ul>
+                <li>For built-in validators (regexp, DNS, SMTP): Simply set them as active</li>
+                <li>For API-based validators: Enter your API key and set them as active</li>
+            </ul>
+        </ol>
+        
+        <h4>Validation Rules Configuration</h4>
+        <ol>
+            <li>Go to Email Validation &rarr; Configuration &rarr; Rules</li>
+            <li>Create rules to determine which validators are used and in what order:</li>
+            <ul>
+                <li><b>Name:</b> Descriptive name for the rule</li>
+                <li><b>Validator:</b> Select which validation service to use</li>
+                <li><b>Sequence:</b> Lower numbers execute first (start with less expensive validators)</li>
+                <li><b>Active:</b> Enable or disable the rule</li>
+            </ul>
+        </ol>
+        
+        <h4>Recommended Rule Configuration</h4>
+        <pre>
+# First try regexp validation - Sequence 10
+Name: Regexp Validation
+Validator: regexp
+Sequence: 10
+
+# Then try DNS validation - Sequence 20
+Name: DNS Validation
+Validator: DNS
+Sequence: 20
+
+# Then try SMTP validation - Sequence 30
+Name: SMTP Validation
+Validator: SMTP
+Sequence: 30
+
+# Finally use paid API - Sequence 40
+Name: API Validation
+Validator: ZeroBounce (or other preferred API service)
+Sequence: 40
+        </pre>
+        
+        <h4>Module-Specific Settings</h4>
+        <p>
+            Each integration module automatically applies validation to its respective model's email fields.
+            No additional configuration is required for the individual modules after setting up the validators and rules.
+        </p>
+        
+        <h4>Manual Validation</h4>
+        <p>
+            To manually validate email addresses:
+        </p>
+        <ul>
+            <li><b>Individual Records:</b> Use the "Validate Email" action in the action menu of supported models</li>
+            <li><b>Web Interface:</b> Go to Email Validation &rarr; Validate Email to use the dedicated interface</li>
+            <li><b>Bulk Validation:</b> Upload CSV files through the web interface or use the scheduled actions</li>
+        </ul>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto;">
+    <div>
+        <h3>Bug Tracker</h3>
+        <p>
+            Bugs are tracked on <a href="https://kitworks.systems/requests">https://kitworks.systems/requests</a>.
+            In case of trouble, please check there if your issue has already
+            been reported.
+        </p>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto; text-align: center;">
+    <div>
+        <h2 style="color: #138c33">Maintainer</h2>
+        <p>KitWorks Systems. Our web site: <a href="https://kitworks.systems">https://kitworks.systems</a></p>
+
+        <p>
+            We can provide you further Odoo Support, Odoo implementation,
+            Odoo customization, Odoo 3rd Party development and integration
+            software, consulting services. Our main goal is to provide the best
+            quality product for you.
+        </p>
+        <p>
+            For any questions
+            <a href="mailto:info@kitworks.systems">contact us</a>.
+        </p>
+    </div>
+</section>

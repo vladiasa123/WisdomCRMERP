@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_kw_email_validation_tree" model="ir.ui.view">
+        <field name="name">kw.email.validation.tree</field>
+        <field name="model">kw.email.validation</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" string="Email"/>
+                <field name="state" string="Status"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_kw_email_validation_form" model="ir.ui.view">
+        <field name="name">kw.email.validation.form</field>
+        <field name="model">kw.email.validation</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_force_validate_email" type="object"
+                            string="Validate"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" string="Email" readonly="0"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Validation Results">
+                            <field name="result_ids" nolabel="1">
+                                <list>
+                                    <field name="validator_id" string="Validator"/>
+                                    <field name="is_valid" string="Is Valid" widget="boolean_button" options="{'terminology': {'string_true': 'Valid', 'string_false': 'Invalid'}}"/>
+                                    <field name="message" string="Message"/>
+                                    <field name="create_date" string="Date" readonly="1"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_kw_email_validation_search" model="ir.ui.view">
+        <field name="name">kw.email.validation.search</field>
+        <field name="model">kw.email.validation</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Email" filter_domain="[('name', 'ilike', self)]"/>
+                <filter string="Valid" name="valid" domain="[('state', '=', 'valid')]"/>
+                <filter string="Invalid" name="invalid" domain="[('state', '=', 'invalid')]"/>
+                <filter string="Pending" name="pending" domain="[('state', '=', 'pending')]"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter string="Status" name="group_by_state" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_kw_email_validation" model="ir.actions.act_window">
+        <field name="name">Email Validations</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">kw.email.validation</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_kw_email_validation_search"/>
+    </record>
+
+    <menuitem id="menu_kw_email_validation"
+              parent="kw_email_validation_main_menu"
+              action="action_kw_email_validation"
+              sequence="10"/>
+</odoo>

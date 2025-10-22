@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_kw_email_validator_tree" model="ir.ui.view">
+        <field name="name">kw.email.validator.tree</field>
+        <field name="model">kw.email.validator</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_kw_email_validator_form" model="ir.ui.view">
+        <field name="name">kw.email.validator.form</field>
+        <field name="model">kw.email.validator</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_test_connection" string="Test Connection" type="object" class="btn-primary" invisible="not api_key"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name" placeholder="Validator Name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Main Settings">
+                            <field name="url" placeholder="API Service URL"/>
+                            <label for="api_key" string="API Key"/>
+                            <div class="o_row" style="width: 100% !important">
+                                <field name="is_api_key_visible" invisible="1"/>
+                                <field name="api_key_visible" password="True" readonly="1"
+                                       invisible="not is_api_key_visible"/>
+                                <field name="api_key" placeholder="Enter API Key"
+                                       invisible="is_api_key_visible"/>
+                                <button name="show_api_key" icon="fa-eye" type="object"
+                                        class="oe_link" title="Show API Key"
+                                        invisible="is_api_key_visible"/>
+                                <button name="hide_api_key" icon="fa-eye-slash" type="object" class="oe_link"
+                                        title="Hide API Key"
+                                        invisible="not is_api_key_visible"/>
+                            </div>
+                        </group>
+                        <group string="Additional Settings">
+                            <field name="regexp" placeholder="Regular Expression for Validation"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_kw_email_validator_search" model="ir.ui.view">
+        <field name="name">kw.email.validator.search</field>
+        <field name="model">kw.email.validator</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" filter_domain="[('name', 'ilike', self)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_kw_email_validator" model="ir.actions.act_window">
+        <field name="name">Email Validators</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">kw.email.validator</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_kw_email_validator_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Configure a new validator
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_kw_email_validator"
+              parent="kw_email_validation_main_menu"
+              action="action_kw_email_validator"
+              sequence="20"/>
+</odoo>

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+hr_eval_access,hr_eval_access,model_hr_employee_evaluation,base.group_system,1,1,1,1
+hr_eval_line_access,hr_eval_line_access,model_hr_employee_evaluation_line,base.group_system,1,1,1,1
+hr_eval_question_access,hr_eval_question_access,model_hr_employee_evaluation_question,base.group_system,1,1,1,1
+hr_eval_answer_access,hr_eval_answer_access,model_hr_employee_evaluation_answer,base.group_system,1,1,1,1
+hr_eval_answer_lead_access,hr_eval_answer_lead_access,model_hr_employee_evaluation_answer_lead,base.group_system,1,1,1,1
+hr_eval_question_lead_access,hr_eval_question_lead_access,model_hr_employee_evaluation_question_lead,base.group_system,1,1,1,1

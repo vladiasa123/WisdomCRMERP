@@ -1,0 +1,209 @@
+<section style="max-width: 896px; margin: 0 auto;">
+    <div style="text-align: center;">
+        <h1 style="color:#875A7B;">Base Email Validation</h1>
+    </div>
+    <div style="text-align: center;">
+        <p>
+            <a href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html">
+                <img alt="License: LGPL-3"
+                     src="https://img.shields.io/badge/license-LGPL--3-blue.png"/></a>
+            <a href="https://kitworks.systems/">
+                <img alt="Kitworks Systems"
+                     src="https://img.shields.io/badge/maintainer-Kitworks-purple.png"/></a>
+        </p>
+        <p><br></p>
+    </div>
+</section>
+
+<section style="margin: 0 auto; max-width: 896px;">
+    <div>
+        <p>This module provides core functionality for email address validation in Odoo. 
+           It allows you to verify email addresses for validity, reducing bounce rates 
+           and improving the quality of your contact data.</p>
+
+        <p>Key features include:</p>
+        <ul>
+            <li>Email Syntax Validation: Basic validation of email format</li>
+            <li>Domain Validation: Verify that email domains exist</li>
+            <li>Multiple Validation Services: Support for various email validation APIs</li>
+            <li>Validation Status Tracking: Track validation status of email addresses</li>
+            <li>Automatic Validation: Schedule automatic validation of email addresses</li>
+            <li>Manual Validation: Trigger validation on demand</li>
+        </ul>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto;">
+    <div>
+        <h3>Supported Validation Services</h3>
+        <ul>
+            <li>NeverBounce</li>
+            <li>QuickEmailVerification</li>
+            <li>MillionVerifier</li>
+            <li>Clearout</li>
+            <li>MailerCheck</li>
+            <li>Mailgun</li>
+            <li>SendPulse</li>
+            <li>ZeroBounce</li>
+        </ul>
+        
+        <h3>Developer Guide</h3>
+
+        <h4>Configuration</h4>
+        <h5>Configure a Validation Service:</h5>
+        <pre>
+validator = env['kw.email.validator'].search([('name', '=', 'neverbounce')], limit=1)
+validator.write({
+    'api_key': 'your_api_key_here',
+    'active': True,
+})
+</pre>
+
+        <h4>Validating Email Addresses</h4>
+        <h5>Manual Validation:</h5>
+        <pre>
+# Create validation record
+validation = env['kw.email.validation'].create({
+    'email': 'test@example.com',
+})
+
+# Validate email
+validation.validate_email()
+</pre>
+
+        <h5>Using with Mixin:</h5>
+        <pre>
+from odoo import models, fields
+
+class MyModel(models.Model):
+    _name = 'my.model'
+    _inherit = ['kw.email.validation.mixin']
+    
+    email = fields.Char(string='Email')
+    
+    # Configure which field contains the email to validate
+    _kw_email_validation_field = 'email'
+</pre>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto;">
+    <div>
+        <h3>Features Details</h3>
+        <ul>
+            <li><b>Validation Status:</b>
+                <ul>
+                    <li>Pending: Email is waiting for validation</li>
+                    <li>Valid: Email is valid and can receive messages</li>
+                    <li>Invalid: Email is invalid or cannot receive messages</li>
+                </ul>
+            </li>
+            <li><b>Validation Rules:</b>
+                <ul>
+                    <li>Configure which validators to use for specific domains</li>
+                    <li>Set validation priority using sequence field</li>
+                    <li>Rules determine the order of validator application</li>
+                </ul>
+            </li>
+            <li><b>Automatic Validation:</b>
+                <ul>
+                    <li>Scheduled task for validating pending emails</li>
+                    <li>Automatic validation of new emails when added</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto;">
+    <div>
+        <h3>Validation Rules Configuration</h3>
+        <p>
+            Validation rules are a key component of the email validation system. They determine which validators 
+            are applied to which email addresses and in what order. Properly configured rules ensure optimal 
+            validation accuracy while minimizing API costs and validation time.
+        </p>
+        
+        <h4>Rule Components</h4>
+        <ul>
+            <li><b>Name:</b> Name of the rule for identification</li>
+            <li><b>Validator:</b> The specific validation service to use</li>
+            <li><b>Sequence:</b> Determines the order of rule application (lower numbers execute first)</li>
+            <li><b>Active:</b> Enable or disable specific rules</li>
+        </ul>
+        
+        <h4>Rule Application Logic</h4>
+        <p>
+            When an email address is validated, the system follows these steps:
+        </p>
+        <ol>
+            <li>Sort all active rules by sequence (ascending)</li>
+            <li>For each rule, apply the validator specified in the rule to the email address</li>
+            <li>If the validator returns a negative result (invalid email), the process stops</li>
+            <li>If all validators return a positive result, the email is considered valid</li>
+        </ol>
+        
+        <h4>Configuration Examples</h4>
+        
+        <h5>Example: Cost Optimization Strategy</h5>
+        <pre>
+# First try regexp validation - Sequence 10
+Name: Regexp Validation
+Validator: regexp
+Sequence: 10
+
+# Then try DNS validation - Sequence 20
+Name: DNS Validation
+Validator: DNS
+Sequence: 20
+
+# Then try SMTP validation - Sequence 30
+Name: SMTP Validation
+Validator: SMTP
+Sequence: 30
+
+# Finally use paid API - Sequence 40
+Name: API Validation
+Validator: ZeroBounce
+Sequence: 40
+        </pre>
+        
+        <h4>Best Practices</h4>
+        <ul>
+            <li>Start with less expensive validators (regexp, SMTP, DNS) before using paid API services</li>
+            <li>Use lower sequence values for faster and cheaper validators</li>
+            <li>Use higher sequence values for more expensive or slower validators</li>
+            <li>Regularly review validation results to optimize rule configurations</li>
+            <li>Configure rules in order from fastest to most accurate validators</li>
+        </ul>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto;">
+    <div>
+        <h3>Bug Tracker</h3>
+        <p>
+            Bugs are tracked on <a href="https://kitworks.systems/requests">https://kitworks.systems/requests</a>.
+            In case of trouble, please check there if your issue has already
+            been reported.
+        </p>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto; text-align: center;">
+    <div>
+        <h2 style="color: #138c33">Maintainer</h2>
+        <p>KitWorks Systems. Our web site: <a href="https://kitworks.systems">https://kitworks.systems</a></p>
+
+        <p>
+            We can provide you further Odoo Support, Odoo implementation,
+            Odoo customization, Odoo 3rd Party development and integration
+            software, consulting services. Our main goal is to provide the best
+            quality product for you.
+        </p>
+        <p>
+            For any questions
+            <a href="mailto:info@kitworks.systems">contact us</a>.
+        </p>
+    </div>
+</section>

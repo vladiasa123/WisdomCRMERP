@@ -1,0 +1,127 @@
+<section style="max-width: 896px; margin: 0 auto;">
+    <div style="text-align: center;">
+        <h1 style="color:#875A7B;">Email Validation with DNS Verification</h1>
+    </div>
+    <div style="text-align: center;">
+        <p>
+            <a href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html">
+                <img alt="License: LGPL-3"
+                     src="https://img.shields.io/badge/license-LGPL--3-blue.png"/></a>
+            <a href="https://kitworks.systems/">
+                <img alt="Kitworks Systems"
+                     src="https://img.shields.io/badge/maintainer-Kitworks-purple.png"/></a>
+        </p>
+        <p><br></p>
+    </div>
+</section>
+
+<section style="margin: 0 auto; max-width: 896px;">
+    <div>
+        <p>This module extends the base email validation functionality with DNS-based verification 
+           using the dnspython library. It adds an additional layer of validation by checking 
+           the existence of MX records for email domains, significantly improving the accuracy 
+           of email validation without requiring external API services.</p>
+
+        <p>Key features include:</p>
+        <ul>
+            <li>DNS-based domain verification using MX record lookups</li>
+            <li>Integration with the base email validation system</li>
+            <li>No external API dependencies or costs</li>
+            <li>Improved validation accuracy compared to syntax-only checks</li>
+        </ul>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto;">
+    <div>
+        <h3>Technical Details</h3>
+        <ul>
+            <li><b>Implementation:</b> Adds a new validator to the kw.email.validator model</li>
+            <li><b>Validation Method:</b> 
+                <ul>
+                    <li>Checks for the existence of MX records for the email domain</li>
+                    <li>Falls back to A record check if MX records are not found</li>
+                    <li>Validates that the domain can receive email</li>
+                </ul>
+            </li>
+            <li><b>Performance:</b> 
+                <ul>
+                    <li>Fast validation without external API calls</li>
+                    <li>Minimal network overhead compared to full SMTP checks</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto;">
+    <div>
+        <h3>Benefits</h3>
+        <ul>
+            <li><b>Cost-Effective:</b> No external API costs or rate limits</li>
+            <li><b>Privacy:</b> Email addresses are not shared with third-party services</li>
+            <li><b>Reliability:</b> No dependency on external service availability</li>
+            <li><b>Speed:</b> Fast DNS lookups compared to full SMTP validation</li>
+            <li><b>Accuracy:</b> More accurate than syntax-only validation</li>
+        </ul>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto;">
+    <div>
+        <h3>Limitations</h3>
+        <p>
+            While DNS validation significantly improves validation accuracy, it has some limitations:
+        </p>
+        <ul>
+            <li>Cannot verify if the specific mailbox exists (only validates the domain)</li>
+            <li>Cannot detect disposable email addresses</li>
+            <li>Cannot detect catch-all email configurations</li>
+            <li>For these advanced validations, consider using API-based validators</li>
+        </ul>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto;">
+    <div>
+        <h3>Dependencies</h3>
+        <ul>
+            <li><b>kw_email_validation</b>: Base module providing core validation functionality</li>
+            <li><b>dnspython</b>: Python library for DNS queries</li>
+        </ul>
+        
+        <h3>Configuration</h3>
+        <p>
+            No additional configuration is required for this module.
+        </p>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto;">
+    <div>
+        <h3>Bug Tracker</h3>
+        <p>
+            Bugs are tracked on <a href="https://kitworks.systems/requests">https://kitworks.systems/requests</a>.
+            In case of trouble, please check there if your issue has already
+            been reported.
+        </p>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto; text-align: center;">
+    <div>
+        <h2 style="color: #138c33">Maintainer</h2>
+        <p>KitWorks Systems. Our web site: <a href="https://kitworks.systems">https://kitworks.systems</a></p>
+
+        <p>
+            We can provide you further Odoo Support, Odoo implementation,
+            Odoo customization, Odoo 3rd Party development and integration
+            software, consulting services. Our main goal is to provide the best
+            quality product for you.
+        </p>
+        <p>
+            For any questions
+            <a href="mailto:info@kitworks.systems">contact us</a>.
+        </p>
+    </div>
+</section>

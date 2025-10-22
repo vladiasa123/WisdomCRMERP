@@ -1,0 +1,111 @@
+<odoo>
+
+
+
+    <!-- Action: open list first -->
+    <record id="action_donation" model="ir.actions.act_window">
+        <field name="name">Donations</field>
+        <field name="res_model">donation.donation</field>
+        <field name="view_mode">list,form,graph,pivot</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Înregistrează prima ta donație.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_donations_root" name="Donations" sequence="20"/>
+
+    <menuitem id="menu_donations_all" name="All Donations" parent="menu_donations_root" action="action_donation_campaigns" sequence="10"/>
+
+    <menuitem id="menu_donations_list" name="All Campaigns" parent="menu_donations_all" action="action_donation_campaigns" sequence="1"/>
+
+    <menuitem id="menu_donations" name="All Donations" parent="menu_donations_all" action="action_donation" sequence="2"/>
+
+
+            <!-- List (Tree) view: inline editable -->
+            <record id="view_donation_list" model="ir.ui.view">
+                <field name="name">donation.donation.list</field>
+                <field name="model">donation.donation</field>
+                <field name="arch" type="xml">
+                    <list string="Donations" create="1" delete="0">
+                        <field name="date"/>
+                        <!-- use a domain if you don't actually have a search filter named status_activ -->
+                        <field name="donator_id" domain="[('status','=','activ')]"/>
+                        <field name="donator_nume" invisible="1"/>
+                        <field name="amount"/>
+                        <field name="currency_id"/>
+                        <field name="method"/>
+                        <field name="reference"/>
+                        <field name="donator_tip"/>
+                        <field name="donator_status"/>
+                        <field name="note"/>
+                        <field name="campaign_id"/>
+                    </list>
+                </field>
+            </record>
+
+            <!-- Form view -->
+            <record id="view_donation_form" model="ir.ui.view">
+                <field name="name">donation.donation.form</field>
+                <field name="model">donation.donation</field>
+                <field name="arch" type="xml">
+                    <form string="Donation">
+                        <sheet>
+                            <group>
+                                <field name="date"/>
+                                <field name="donator_id" options="{'no_open': False}"/>
+                                <field name="amount"/>
+                                <field name="currency_id"/>
+                                <field name="campaign_id"/>
+                            </group>
+                            <group>
+                                <field name="method"/>
+                                <field name="reference"/>
+                            </group>
+                            <notebook>
+                                <page string="Notes">
+                                    <field name="note"/>
+                                </page>
+                                <page string="Donator Info">
+                                    <group>
+                                        <field name="donator_nume" readonly="1"/>
+                                        <field name="donator_tip" readonly="1"/>
+                                        <field name="donator_status" readonly="1"/>
+                                    </group>
+                                </page>
+                            </notebook>
+                        </sheet>
+                    </form>
+                </field>
+            </record>
+
+            <!-- Search view with filters & group by -->
+            <record id="view_donation_search" model="ir.ui.view">
+                <field name="name">donation.donation.search</field>
+                <field name="model">donation.donation</field>
+                <field name="arch" type="xml">
+                    <search string="Search Donations">
+                        <field name="donator_id"/>
+                        <field name="donator_nume"/>
+                        <field name="reference"/>
+                        <field name="amount"/>
+
+                        <filter name="today" string="Today" domain="[('date','=', context_today())]"/>
+                        <filter name="this_month" string="This Month" domain="[ ('date','&gt;=', context_today().replace(day=1)), ('date','&lt;=', context_today())
+                        ]"/>
+                        <filter name="pf" string="Pers. Fizică" domain="[('donator_tip','=','persoana_fizica')]"/>
+                        <filter name="pj" string="Pers. Juridică" domain="[('donator_tip','=','persoana_juridica')]"/>
+                        <filter name="activ" string="Donatori Activi" domain="[('donator_status','=','activ')]"/>
+
+                        <group expand="0" string="Group By">
+                            <filter string="Donator" name="group_donator" context="{'group_by': 'donator_id'}"/>
+                            <filter string="Method" name="group_method" context="{'group_by': 'method'}"/>
+                            <filter string="Month" name="group_month" context="{'group_by': 'date:month'}"/>
+                        </group>
+                    </search>
+                </field>
+            </record>
+
+        </odoo>

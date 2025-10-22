@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="event_registration_view_form_inherit_email_validation" model="ir.ui.view">
+        <field name="name">event.registration.form.inherit.email.validation</field>
+        <field name="model">event.registration</field>
+        <field name="inherit_id" ref="event.view_event_registration_form"/>
+        <field name="arch" type="xml">
+            <field name="email" position="attributes">
+                <attribute name="decoration-success">kw_email_validation_state == 'valid'</attribute>
+                <attribute name="decoration-warning">kw_email_validation_state == 'pending'</attribute>
+                <attribute name="decoration-danger">kw_email_validation_state == 'invalid'</attribute>
+            </field>
+            <field name="email" position="after">
+                <field name="kw_email_validation_state" invisible="1"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="event_registration_view_tree_inherit_email_validation" model="ir.ui.view">
+        <field name="name">event.registration.tree.inherit.email.validation</field>
+        <field name="model">event.registration</field>
+        <field name="inherit_id" ref="event.view_event_registration_tree"/>
+        <field name="arch" type="xml">
+            <field name="email" position="attributes">
+                <attribute name="decoration-success">kw_email_validation_state == 'valid'</attribute>
+                <attribute name="decoration-warning">kw_email_validation_state == 'pending'</attribute>
+                <attribute name="decoration-danger">kw_email_validation_state == 'invalid'</attribute>
+            </field>
+            <field name="email" position="after">
+                <field name="kw_email_validation_state" invisible="1"/>
+            </field>
+        </field>
+    </record>
+</odoo>

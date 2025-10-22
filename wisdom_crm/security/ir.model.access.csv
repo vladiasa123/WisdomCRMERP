@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_beneficiari_user,access.beneficiari.user,model_beneficiari_management,base.group_user,1,1,1,1
+access_curs_user,access.curs.user,model_curs_management,base.group_user,1,1,1,1
+acces_beneficiar_curs,acces.beneficiar.curs,model_beneficiar_curs,base.group_user,1,1,1,1
+acces_fisa_servicii,acces.fisa.servicii,model_fisa_servicii,base.group_user,1,1,1,1
+

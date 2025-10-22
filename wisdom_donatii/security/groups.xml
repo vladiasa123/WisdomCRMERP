@@ -1,0 +1,12 @@
+<odoo>
+    <record id="module_category_donations" model="ir.module.category">
+        <field name="name">Donations</field>
+        <field name="sequence">20</field>
+        <field name="description">Groups related to donation management</field>
+    </record>
+
+    <record id="group_hr_donator" model="res.groups">
+        <field name="name">Donator</field>
+        <field name="category_id" ref="module_category_donations"/>
+    </record>
+</odoo>

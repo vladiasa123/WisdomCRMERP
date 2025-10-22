@@ -1,0 +1,35 @@
+<odoo>
+  <!-- Inherit Employee form -->
+  <record id="view_hr_employee_form_review_inherit" model="ir.ui.view">
+    <field name="name">hr.employee.form.review.inherit</field>
+    <field name="model">hr.employee</field>
+    <field name="inherit_id" ref="hr.view_employee_form"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//header" position="inside">
+        <button name="%(action_hr_employee_evaluations)d"
+                type="action"
+                string="Evaluări"
+                class="oe_highlight"/>
+        <button name="action_download_adeverinta_pdf"
+            type="object"
+            string="Descarcă adeverință"
+            class="oe_highlight"/>
+      </xpath>
+
+      <xpath expr="//sheet/notebook" position="inside">
+        <page string="Evaluations">
+          <field name="evaluation_count" readonly="1"/>
+          <field name="evaluation_ids" context="{'default_employee_id': id}" nolabel="1">
+            <list>
+              <field name="date"/>
+              <field name="total"/>
+              <field name="final_score"/>
+            </list>
+          </field>
+        </page>
+      </xpath>
+
+    </field>
+  </record>
+</odoo>

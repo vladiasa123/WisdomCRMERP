@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_employee_form_inherit_email_validation" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit.email.validation</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='work_email']" position="attributes">
+                <attribute name="decoration-success">kw_email_validation_state == 'valid'</attribute>
+                <attribute name="decoration-warning">kw_email_validation_state == 'pending'</attribute>
+                <attribute name="decoration-danger">kw_email_validation_state == 'invalid'</attribute>
+            </xpath>
+            <xpath expr="//field[@name='work_email']" position="after">
+                <field name="kw_email_validation_state" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

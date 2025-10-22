@@ -1,0 +1,65 @@
+<odoo>
+    <template id="report_donation_ai">
+        <t t-call="web.html_container">
+            <div class="page">
+                <h2>Raport Donații (AI)</h2>
+                <p>Perioadă: <t t-esc="data['date_from']"/> - <t t-esc="data['date_to']"/></p>
+
+                <h3>Campanii</h3>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Campanie</th>
+                            <th>Total</th>
+                            <th># Donații</th>
+                            <th>Medie</th>
+                            <th>Donatori unici</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="data['campaigns']" t-as="c">
+                            <td><t t-esc="c['campaign']"/></td>
+                            <td><t t-esc="c['total_amount']"/></td>
+                            <td><t t-esc="c['count']"/></td>
+                            <td><t t-esc="c['avg_amount']"/></td>
+                            <td><t t-esc="c['unique_donors']"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Top Donatori</h3>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Nume</th>
+                            <th>Total</th>
+                            <th># Donații</th>
+                            <th>Ultima donație</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="data['top_donors']" t-as="d">
+                            <td><t t-esc="d['nume']"/></td>
+                            <td><t t-esc="d['total_amount']"/></td>
+                            <td><t t-esc="d['count']"/></td>
+                            <td><t t-esc="d['last_date']"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Rezumat AI</h3>
+                <p><t t-esc="data['ai_summary']"/></p>
+            </div>
+        </t>
+    </template>
+
+    <report
+        id="action_report_donation_ai"
+        model="donation.ai.report.wizard"
+        string="Raport Donații (AI)"
+        report_type="qweb-pdf"
+        name="donation_ai_report.report_donation_ai"
+        file="donation_ai_report.report_donation_ai"
+        print_report_name="'donation_ai_report'"
+    />
+</odoo>

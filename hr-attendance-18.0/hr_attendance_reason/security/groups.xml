@@ -1,0 +1,6 @@
+  <odoo>
+    <record id="group_hr_attendance_user" model="res.groups">
+            <field name="name">Attendances / User</field>
+            <field name="category_id" ref="base.module_category_human_resources"/>
+    </record>
+  </odoo>

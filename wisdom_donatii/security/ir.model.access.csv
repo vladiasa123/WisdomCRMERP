@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_donation_admin,donation.donation admin,model_donation_donation,base.group_system,1,1,1,1
+access_donation_campaign_admin,donation.campaign admin,model_donation_campaign,base.group_system,1,1,1,1

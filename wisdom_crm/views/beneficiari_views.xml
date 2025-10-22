@@ -1,0 +1,98 @@
+<odoo>
+    <!-- Tree View -->
+    <record id="view_beneficiari_tree" model="ir.ui.view">
+        <field name="name">beneficiari.list</field>
+        <field name="model">beneficiari.management</field>
+        <field name="arch" type="xml">
+            <list string="Beneficiaries">
+                <field name="nume"/>
+                <field name="prenume"/>
+                <field name="telefon"/>
+                <field name="email"/>
+                <field name="localitate"/>
+                <field name="judet"/>
+                <field name="status"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_beneficiari_form" model="ir.ui.view">
+        <field name="name">beneficiari.form</field>
+        <field name="model">beneficiari.management</field>
+        <field name="arch" type="xml">
+            <form string="Beneficiary">
+                <sheet>
+                    <group string="Personal Information">
+                        <field name="nume"/>
+                        <field name="prenume"/>
+                        <field name="cnp"/>
+                        <field name="telefon"/>
+                        <field name="email"/>
+                        <field name="resedinta"/>
+                    </group>
+                    <group string="Address">
+                        <field name="localitate"/>
+                        <field name="judet"/>
+                        <field name="strada"/>
+                        <field name="numar"/>
+                        <field name="bloc"/>
+                        <field name="scara"/>
+                        <field name="apartament"/>
+                    </group>
+                    <group string="Education / Work">
+                        <field name="ultima_scoala"/>
+                        <field name="ocupatie"/>
+                        <field name="calificare"/>
+                        <field name="loc_munca"/>
+                    </group>
+                    <group string="Special Attributes">
+                        <field name="etnie_roma"/>
+                        <field name="dizabilitati"/>
+                    </group>
+                    <group string="System Info">
+                        <field name="date_joined"/>
+                        <field name="status"/>
+                    </group>
+                    <group>
+                        <field name="notes"/>
+                    </group>
+                </sheet>
+                <notebook>
+                    <page string="Fise de servicii">
+                        <field name="fisa_servicii_ids">
+                            <list editable="bottom">
+                                <field name="activitate"/>
+                                <field name="numar_fisa"/>
+                                <field name="tema"/>
+                                <field name="luna_an"/>
+                                <field name="document" filename="filename"/>
+                            </list>
+                            <form>
+                                <group>
+                                    <field name="activitate"/>
+                                    <field name="numar_fisa"/>
+                                    <field name="tema"/>
+                                    <field name="luna_an"/>
+                                    <field name="document" filename="filename"/>
+                                </group>
+                            </form>
+                        </field>
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_beneficiari" model="ir.actions.act_window">
+        <field name="name">Beneficiaries</field>
+        <field name="res_model">beneficiari.management</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_beneficiari_root" name="CRM" sequence="10"/>
+    <menuitem id="menu_beneficiari_main" name="Manage Beneficiaries"
+              parent="menu_beneficiari_root" action="action_beneficiari"/>
+</odoo>

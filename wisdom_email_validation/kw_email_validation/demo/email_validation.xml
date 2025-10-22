@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="kw_email_validation_1" model="kw.email.validation">
+        <field name="name">user123@example.com</field>
+    </record>
+    <record id="kw_email_validation_2" model="kw.email.validation">
+        <field name="name">test.user+alias@domain.co.ua</field>
+    </record>
+    <record id="kw_email_validation_3" model="kw.email.validation">
+        <field name="name">john_doe-99@sub.domain.org</field>
+    </record>
+    <record id="kw_email_validation_4" model="kw.email.validation">
+        <field name="name">user@.com</field>
+    </record>
+    <record id="kw_email_validation_5" model="kw.email.validation">
+        <field name="name">user@domain</field>
+    </record>
+    <record id="kw_email_validation_6" model="kw.email.validation">
+        <field name="name">user@domain..com</field>
+    </record>
+
+</odoo>

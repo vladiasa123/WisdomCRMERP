@@ -1,0 +1,129 @@
+<section style="max-width: 896px; margin: 0 auto;">
+    <div style="text-align: center;">
+        <h1 style="color:#875A7B;">Email Validation with SMTP Verification</h1>
+    </div>
+    <div style="text-align: center;">
+        <p>
+            <a href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html">
+                <img alt="License: LGPL-3"
+                     src="https://img.shields.io/badge/license-LGPL--3-blue.png"/></a>
+            <a href="https://kitworks.systems/">
+                <img alt="Kitworks Systems"
+                     src="https://img.shields.io/badge/maintainer-Kitworks-purple.png"/></a>
+        </p>
+        <p><br></p>
+    </div>
+</section>
+
+<section style="margin: 0 auto; max-width: 896px;">
+    <div>
+        <p>This module extends the base email validation functionality with SMTP-based verification. 
+           It adds an advanced layer of validation by performing a partial SMTP connection to verify 
+           the existence of email addresses, significantly improving validation accuracy without 
+           requiring paid external API services.</p>
+
+        <p>Key features include:</p>
+        <ul>
+            <li>SMTP-based mailbox verification</li>
+            <li>Integration with the base email validation system</li>
+            <li>No external API dependencies or costs</li>
+            <li>High accuracy compared to DNS-only or syntax-only checks</li>
+            <li>Non-intrusive verification without sending actual emails</li>
+        </ul>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto;">
+    <div>
+        <h3>Technical Details</h3>
+        <ul>
+            <li><b>Implementation:</b> Adds a new validator to the kw.email.validator model</li>
+            <li><b>Validation Method:</b> 
+                <ul>
+                    <li>Establishes an SMTP connection to the recipient's mail server</li>
+                    <li>Performs SMTP handshake and RCPT TO command</li>
+                    <li>Verifies server response to determine if the mailbox exists</li>
+                    <li>Gracefully closes the connection without sending actual email</li>
+                </ul>
+            </li>
+            <li><b>Performance:</b> 
+                <ul>
+                    <li>More thorough than DNS checks but requires more time</li>
+                    <li>Configurable timeout settings to prevent long-running validations</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto;">
+    <div>
+        <h3>Benefits</h3>
+        <ul>
+            <li><b>Cost-Effective:</b> No external API costs or rate limits</li>
+            <li><b>Privacy:</b> Email addresses are not shared with third-party services</li>
+            <li><b>Accuracy:</b> Higher accuracy than DNS-only or syntax-only validation</li>
+            <li><b>Mailbox Verification:</b> Can detect non-existent mailboxes in valid domains</li>
+            <li><b>Self-Hosted:</b> Complete control over the validation process</li>
+        </ul>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto;">
+    <div>
+        <h3>Limitations</h3>
+        <p>
+            While SMTP validation provides high accuracy, it has some limitations:
+        </p>
+        <ul>
+            <li>Some mail servers may block SMTP verification attempts</li>
+            <li>Cannot reliably detect catch-all email configurations</li>
+            <li>Cannot detect disposable email addresses</li>
+            <li>May be slower than API-based validation services</li>
+            <li>For these advanced validations, consider using API-based validators</li>
+        </ul>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto;">
+    <div>
+        <h3>Dependencies</h3>
+        <ul>
+            <li><b>kw_email_validation</b>: Base module providing core validation functionality</li>
+        </ul>
+        
+        <h3>Configuration</h3>
+        <p>
+            No additional configuration is required for this module.
+        </p>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto;">
+    <div>
+        <h3>Bug Tracker</h3>
+        <p>
+            Bugs are tracked on <a href="https://kitworks.systems/requests">https://kitworks.systems/requests</a>.
+            In case of trouble, please check there if your issue has already
+            been reported.
+        </p>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto; text-align: center;">
+    <div>
+        <h2 style="color: #138c33">Maintainer</h2>
+        <p>KitWorks Systems. Our web site: <a href="https://kitworks.systems">https://kitworks.systems</a></p>
+
+        <p>
+            We can provide you further Odoo Support, Odoo implementation,
+            Odoo customization, Odoo 3rd Party development and integration
+            software, consulting services. Our main goal is to provide the best
+            quality product for you.
+        </p>
+        <p>
+            For any questions
+            <a href="mailto:info@kitworks.systems">contact us</a>.
+        </p>
+    </div>
+</section>

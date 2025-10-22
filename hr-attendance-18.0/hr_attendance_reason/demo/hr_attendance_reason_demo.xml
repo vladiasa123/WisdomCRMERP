@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+   
+    <record id="hr_act_reason_2" model="hr.attendance.reason">
+        <field name="name">Holiday</field>
+        <field name="code">FS</field>
+        <field name="action_type">sign_out</field>
+        <field name="show_on_attendance_screen" eval="True" />
+    </record>
+    <record id="hr_act_reason_2" model="hr.attendance.reason">
+        <field name="name">Medical Leave</field>
+        <field name="code">FS</field>
+        <field name="action_type">sign_out</field>
+        <field name="show_on_attendance_screen" eval="True" />
+    </record>
+
+</odoo>

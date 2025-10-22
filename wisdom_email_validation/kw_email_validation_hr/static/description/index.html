@@ -1,0 +1,131 @@
+<section style="max-width: 896px; margin: 0 auto;">
+    <div style="text-align: center;">
+        <h1 style="color:#875A7B;">Email Validation for HR</h1>
+    </div>
+    <div style="text-align: center;">
+        <p>
+            <a href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html">
+                <img alt="License: LGPL-3"
+                     src="https://img.shields.io/badge/license-LGPL--3-blue.png"/></a>
+            <a href="https://kitworks.systems/">
+                <img alt="Kitworks Systems"
+                     src="https://img.shields.io/badge/maintainer-Kitworks-purple.png"/></a>
+        </p>
+        <p><br></p>
+    </div>
+</section>
+
+<section style="margin: 0 auto; max-width: 896px;">
+    <div>
+        <p>This module extends the base email validation functionality to validate work email addresses 
+           for employees in Odoo. It ensures that your HR database contains valid email addresses, 
+           improving internal communication and reducing delivery issues.</p>
+
+        <p>Key features include:</p>
+        <ul>
+            <li>Automatic validation of employee work email addresses</li>
+            <li>Visual indicators for email validation status directly on the work email field</li>
+            <li>Automatic validation of existing emails upon module installation</li>
+        </ul>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto;">
+    <div>
+        <h3>Usage</h3>
+        
+        <h4>Email Validation Status</h4>
+        <p>The work email field in employee forms will be color-coded based on validation status:</p>
+        <ul>
+            <li><span style="color: green;">Green</span>: Valid email address</li>
+            <li><span style="color: orange;">Yellow</span>: Email pending validation</li>
+            <li><span style="color: red;">Red</span>: Invalid email address</li>
+        </ul>
+        
+        <h4>Benefits</h4>
+        <ul>
+            <li><b>Improved Internal Communication:</b> Ensure that emails to employees are delivered successfully</li>
+            <li><b>Data Quality:</b> Maintain accurate employee contact information</li>
+            <li><b>Reduced IT Support:</b> Fewer issues with email delivery to employees</li>
+        </ul>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto;">
+    <div>
+        <h3>Technical Details</h3>
+        <ul>
+            <li><b>Validated Field:</b> The standard <code>work_email</code> field in hr.employee model</li>
+            <li><b>Implementation:</b> Uses the kw.email.validation.mixin to inherit validation functionality</li>
+            <li><b>Automatic Processing:</b> 
+                <ul>
+                    <li>New employee records are automatically queued for validation</li>
+                    <li>Existing employee records are validated upon module installation</li>
+                </ul>
+            </li>
+            <li><b>UI Integration:</b> 
+                <ul>
+                    <li>Color indicators directly on the work email field</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto;">
+    <div>
+        <h3>Integration with HR Processes</h3>
+        <p>
+            This module seamlessly integrates with standard HR processes:
+        </p>
+        <ul>
+            <li>Employee onboarding: Validate new employee email addresses automatically</li>
+            <li>Employee information updates: Validate changed email addresses</li>
+            <li>Mass communication: Ensure company-wide emails reach all employees</li>
+        </ul>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto;">
+    <div>
+        <h3>Dependencies</h3>
+        <ul>
+            <li><b>kw_email_validation</b>: Base module providing core validation functionality</li>
+            <li><b>hr</b>: Odoo Human Resources module</li>
+        </ul>
+        
+        <h3>Configuration</h3>
+        <p>
+            No additional configuration is required for this module.
+        </p>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto;">
+    <div>
+        <h3>Bug Tracker</h3>
+        <p>
+            Bugs are tracked on <a href="https://kitworks.systems/requests">https://kitworks.systems/requests</a>.
+            In case of trouble, please check there if your issue has already
+            been reported.
+        </p>
+    </div>
+</section>
+
+<section style="max-width: 896px; margin: 0 auto; text-align: center;">
+    <div>
+        <h2 style="color: #138c33">Maintainer</h2>
+        <p>KitWorks Systems. Our web site: <a href="https://kitworks.systems">https://kitworks.systems</a></p>
+
+        <p>
+            We can provide you further Odoo Support, Odoo implementation,
+            Odoo customization, Odoo 3rd Party development and integration
+            software, consulting services. Our main goal is to provide the best
+            quality product for you.
+        </p>
+        <p>
+            For any questions
+            <a href="mailto:info@kitworks.systems">contact us</a>.
+        </p>
+    </div>
+</section>

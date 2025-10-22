@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="hr_attendance_view_form" model="ir.ui.view">
+        <field name="name">hr.attendance.form</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_form" />
+        <field name="priority">500</field>
+        <field name="arch" type="xml">
+            <sheet position="inside">
+                <group name="reason">
+                    <group>
+                        <field name="attendance_reason_ids" widget="many2many_tags" options="{'no_create': True}" invisible="attendance_type != 'attendance'"/>
+                        <!-- <field name="vacation_date" invisible="len(attendance_reason_ids) == 0"/> -->
+                    </group>
+                </group>
+            </sheet>
+        </field>
+    </record>
+
+
+    <record id="hr_attendance_view_form_inherit_event" model="ir.ui.view">
+        <field name="name">hr.attendance.form.inherit.event</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='employee_id']" position="before">
+                <field name="attendance_type" widget="radio"/>
+                <field name="event_id" invisible="attendance_type != 'event'"/>
+                <field name="event_pictures" widget="many2many_binary" options="{'max_upload_size': 5*1024*1024}" invisible="attendance_type != 'event'"/>
+                <field name="event_documents" widget="many2many_binary" options="{'max_upload_size': 20*1024*1024}" invisible="attendance_type != 'event'"/>
+                <field name="event_description" placeholder="Enter a description or notes about the event…" invisible="attendance_type != 'event'"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_attendance_form_time_only" model="ir.ui.view">
+        <field name="name">hr.attendance.form.time.only</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_form"/>
+        <field name="priority">500</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='check_in']" position="replace">
+                <field name="time_in" widget="float_time"/>
+            </xpath>
+            <xpath expr="//field[@name='check_out']" position="replace">
+                <field name="time_out" widget="float_time"/>
+            </xpath>
+
+            <xpath expr="//field[@name='validated_overtime_hours']" position="replace"/>
+            <xpath expr="//label[@for='validated_overtime_hours']" position="replace"/>
+            <xpath expr="//group[@name='check_in_group']" position="replace"/>
+            <xpath expr="//form//group[.//field[@name='worked_hours']]/following::separator[1]" position="replace"/>
+
+            <xpath expr="//field[@name='employee_id']" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_hr_attendance_filter_inherit_overtime" model="ir.ui.view">
+        <field name="name">hr.attendance.search.inherit.overtime</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <filter string="Holiday" name="holiday" domain="[('attendance_reason_ids', '=', 'Holiday')]"/>
+            </xpath>
+            <xpath expr="//search" position="inside">
+                <filter string="Medical Leave" name="medical_leave" domain="[('attendance_reason_ids', '=', 'Medical Leave')]"/>
+                <filter string="Attendance Type" name="attendance_type" context="{'group_by':'attendance_type'}"/>
+                <filter string="Event" name="attendance_type_event" domain="[('attendance_type','=','event')]"/>
+                <filter string="Attendance" name="attendance_type_attendance" domain="[('attendance_type','=','attendance')]"/>
+            </xpath>
+        </field>
+    </record>
+
+
+
+
+
+
+    <record id="hr_attendance_view_tree" model="ir.ui.view">
+        <field name="name">hr.attendance.list</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.view_attendance_tree" />
+        <field name="priority">500</field>
+        <field name="arch" type="xml">
+            <field name="worked_hours" position="after">
+                <field name="attendance_reason_ids" widget="many2many_tags" options="{'no_create': True}" />
+            </field>
+        </field>
+    </record>
+</odoo>

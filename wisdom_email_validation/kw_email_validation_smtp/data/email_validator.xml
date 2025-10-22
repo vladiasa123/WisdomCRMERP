@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="kw_email_validator_smtp" model="kw.email.validator">
+        <field name="name">smtp</field>
+    </record>
+
+</odoo>

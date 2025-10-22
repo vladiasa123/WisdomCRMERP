@@ -1,0 +1,61 @@
+<!-- views/donation_campaign_views.xml -->
+<odoo>
+    <record id="view_donation_campaign_tree" model="ir.ui.view">
+        <field name="name">donation.campaign.list</field>
+        <field name="model">donation.campaign</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_donation_campaign_form" model="ir.ui.view">
+        <field name="name">donation.campaign.form</field>
+        <field name="model">donation.campaign</field>
+        <field name="arch" type="xml">
+            <form string="Donation Campaign">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+                    <group>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action pentru campanii -->
+    <record id="action_donation_campaigns" model="ir.actions.act_window">
+        <field name="name">Donation Campaigns</field>
+        <field name="res_model">donation.campaign</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Înregistrează prima ta campanie.
+            </p>
+        </field>
+    </record>
+
+     <record id="action_donation" model="ir.actions.act_window">
+        <field name="name">Donation Campaigns</field>
+        <field name="res_model">donation.donation</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Înregistrează prima ta campanie.
+            </p>
+        </field>
+    </record>
+
+</odoo>

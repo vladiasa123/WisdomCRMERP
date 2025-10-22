@@ -1,0 +1,127 @@
+<odoo>
+    <data>
+
+        <!-- Inherit Employee Form -->
+        <record id="view_employee_form_inherit_extended" model="ir.ui.view">
+            <field name="name">hr.employee.form.inherit.extended</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//notebook/page[@name='hr_settings']" position="after">
+
+                    <!-- Donator Page -->
+                    <page string="Donator Info" invisible="user_type != 'donator'">
+                        <group>
+                            <field name="donator_id" options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="nume"/>
+                                <field name="tip"/>
+                            </group>
+                            <group>
+                                <field name="telefon"/>
+                            </group>
+                            <field name="adresa"/>
+                            <field name="preferinte_donatie"/>
+                            <field name="status"/>
+                        </group>
+                    </page>
+
+                    <!-- Voluntar Page -->
+                    <page string="Voluntar Info" invisible="user_type != 'voluntar'">
+                        <group>
+                            <field name="voluntar_id" options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="voluntar_nume"/>
+                            </group>
+                            <group>
+                                <field name="voluntar_telefon"/>
+                                <field name="voluntar_strada"/>
+                                <field name="voluntar_numar"/>
+                                <field name="voluntar_judet"/>
+                                <field name="voluntar_oras"/>
+                            </group>
+                            <group>
+                                <field name="voluntar_data_nasterii"/>
+                                <field name="voluntar_cnp"/>
+                                <field name="voluntar_serie_buletin"/>
+                                <field name="voluntar_numar_buletin"/>
+                            </group>
+                            <group>
+                                <field name="voluntar_abilitati"/>
+                                <field name="voluntar_preferinte"/>
+                            </group>
+                            <group>
+                                <field name="voluntar_disponibilitate"/>
+                                <field name="voluntar_status"/>
+                            </group>
+                            <field name="voluntar_data_inregistrare"/>
+                        </group>
+                    </page>
+
+                    <!-- Angajat Page -->
+                    <page string="Angajat Info" invisible="user_type != 'angajat'">
+                        <group>
+                            <field name="angajat_id" options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="angajat_nume"/>
+                                <field name="angajat_prenume"/>
+                            </group>
+                            <group>
+                                <field name="angajat_cnp"/>
+                            </group>
+                            <group>
+                                <field name="angajat_telefon"/>
+                                <field name="angajat_departament"/>
+                            </group>
+                            <group>
+                                <field name="angajat_rol"/>
+                                <field name="angajat_superior"/>
+                            </group>
+                        </group>
+                    </page>
+
+                </xpath>
+            </field>
+        </record>
+
+   
+
+        <record id="view_employee_tree_inherit" model="ir.ui.view">
+            <field name="name">hr.employee.tree.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>
+            <field name="arch" type="xml">
+            <xpath expr="//list" position="inside">
+                <button string="Send email" name="send_email_action" type="object" class="oe_highlight"   invisible="user_type != 'donator'"/>
+            </xpath>
+
+            
+            </field>
+        </record>
+
+
+        <record id="view_employee_skills_inherit" model="ir.ui.view">
+            <field name="name">hr.employee.skills.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr_skills.hr_employee_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='skills_resume']//div/*" position="inside">
+                    <button 
+                        string="Import volunteer data" 
+                        type="action"
+                        name="%(action_volunteer_data_wizard)d"
+                        class="oe_highlight"/>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>
