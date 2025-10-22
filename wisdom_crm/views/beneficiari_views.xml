@@ -92,7 +92,9 @@
     </record>
 
     <!-- Menu Items -->
-    <menuitem id="menu_beneficiari_root" name="CRM" sequence="10"/>
+    <menuitem id="menu_beneficiari_root" name="CRM" sequence="10"
+          groups="wisdom_hr_employee.group_res_voluntar,wisdom_hr_employee.group_res_angajat,base.group_system"/>
     <menuitem id="menu_beneficiari_main" name="Manage Beneficiaries"
               parent="menu_beneficiari_root" action="action_beneficiari"/>
+              
 </odoo>

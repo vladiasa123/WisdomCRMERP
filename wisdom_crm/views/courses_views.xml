@@ -84,4 +84,7 @@
 
     <menuitem id="menu_cursuri_alocare" name="Alocare Curs Beneficiar"
             parent="menu_cursuri_root" action="action_beneficiar_curs" sequence="2"/>
+
+    <menuitem id="menu_instrument_root" name="Instrumente" parent="menu_beneficiari_root" sequence="20"/>
+    <menuitem id="menu_instrument_manage" name="Gestionare" parent="menu_instrument_root" action="action_instrument"  sequence="1"/>
 </odoo>

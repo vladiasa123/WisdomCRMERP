@@ -9,12 +9,14 @@
         completely independent from Odoo's built-in CRM.
     """,
     'author': 'Your Name',
-    'depends': ['base'],
+    'depends': ['base', 'wisdom_hr_employee'],
     'data': [
         'security/ir.model.access.csv',
         'views/beneficiari_views.xml',
         'views/courses_views.xml',
-        'views/beneficiar_curs_views.xml'
+        'views/beneficiar_curs_views.xml',
+        'views/instrument_views.xml'
+        
     ],
     'application': True,
     'installable': True,
