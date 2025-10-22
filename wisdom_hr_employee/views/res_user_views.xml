@@ -1,6 +1,6 @@
 <odoo>
 
-    <!-- Extend main Users form
+    Extend main Users form
     <record id="view_users_form_inherit_usertype" model="ir.ui.view">
         <field name="name">res.users.form.inherit.usertype</field>
         <field name="model">res.users</field>
@@ -30,6 +30,7 @@
                             class="oe_highlight"
                         />
 
+                    <!-- Donator -->
                     <group string="Donator Details" invisible="user_type != 'donator'">
                         <field name="nume"/>
                         <field name="tip"/>
@@ -40,6 +41,7 @@
                         <field name="status"/>
                     </group>
 
+                    <!-- Voluntar -->
                     <group string="Voluntar Details" invisible="user_type != 'voluntar'">
                         <field name="voluntar_nume"/>
                         <field name="voluntar_telefon"/>
@@ -61,6 +63,7 @@
                     </group>
 
 
+                    <!-- Angajat -->
                     <group string="Angajat Details" invisible="user_type != 'angajat'">
                         <field name="angajat_nume"/>
                         <field name="angajat_prenume"/>
@@ -75,7 +78,7 @@
             </xpath>
 
         </field>
-    </record> -->
+    </record>
 
 
     <record id="view_employee_profile_form_inherit_custom" model="ir.ui.view">
