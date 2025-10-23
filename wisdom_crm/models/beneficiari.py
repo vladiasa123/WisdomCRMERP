@@ -3,6 +3,7 @@ from odoo import models, fields, api
 class Beneficiari(models.Model):
     _name = 'beneficiari.management'
     _description = 'Beneficiari Management'
+    _rec_name = 'nume'  
 
     # Personal Information
     nume = fields.Char(string='Nume', required=True)
