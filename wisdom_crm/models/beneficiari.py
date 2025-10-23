@@ -12,6 +12,12 @@ class Beneficiari(models.Model):
     email = fields.Char(string='Email')
     fisa_servicii_ids = fields.One2many('fisa.servicii', 'beneficiar_id', string="Fise de servicii")
 
+    activitate_ids = fields.Many2many(
+        'beneficiar.activitate',
+        string="Activități",
+        help="Activități asociate beneficiarului"
+    )
+
     
     # Address
     localitate = fields.Char(string='Localitate')

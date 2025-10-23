@@ -4,4 +4,5 @@ access_curs_user,access.curs.user,model_curs_management,base.group_user,1,1,1,1
 acces_beneficiar_curs,acces.beneficiar.curs,model_beneficiar_curs,base.group_user,1,1,1,1
 acces_fisa_servicii,acces.fisa.servicii,model_fisa_servicii,base.group_user,1,1,1,1
 acces_instrument,acces.instrument,model_instrumente_instrument,base.group_user,1,1,1,1
+acces_activiate,acces.activitate,model_beneficiar_activitate,base.group_user,1,1,1,1
 

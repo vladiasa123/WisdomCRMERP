@@ -15,7 +15,8 @@
         'views/beneficiari_views.xml',
         'views/courses_views.xml',
         'views/beneficiar_curs_views.xml',
-        'views/instrument_views.xml'
+        'views/instrument_views.xml',
+        'views/activitate.xml',
         
     ],
     'application': True,

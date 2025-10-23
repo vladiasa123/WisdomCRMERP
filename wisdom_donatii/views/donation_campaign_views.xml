@@ -1,14 +1,15 @@
 <!-- views/donation_campaign_views.xml -->
 <odoo>
+    <!-- Tree View pentru Campanii de Donații -->
     <record id="view_donation_campaign_tree" model="ir.ui.view">
         <field name="name">donation.campaign.list</field>
         <field name="model">donation.campaign</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name"/>
-                <field name="start_date"/>
-                <field name="end_date"/>
-                <field name="active"/>
+                <field name="name" string="Nume"/>
+                <field name="start_date" string="Data Începerii"/>
+                <field name="end_date" string="Data Încheierii"/>
+                <field name="active" string="Activă"/>
             </list>
         </field>
     </record>
@@ -17,25 +18,25 @@
         <field name="name">donation.campaign.form</field>
         <field name="model">donation.campaign</field>
         <field name="arch" type="xml">
-            <form string="Donation Campaign">
+            <form string="Campanie de Donații">
                 <sheet>
                     <group>
                         <field name="name"/>
-                        <field name="description"/>
+                        <field name="description" string="Descriere"/>
                     </group>
                     <group>
-                        <field name="start_date"/>
-                        <field name="end_date"/>
-                        <field name="active"/>
+                        <field name="start_date" string="Data Începerii"/>
+                        <field name="end_date" string="Data Încheierii"/>
+                        <field name="active" string="Activă"/>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <!-- Action pentru campanii -->
+    <!-- Acțiune pentru Campanii de Donații -->
     <record id="action_donation_campaigns" model="ir.actions.act_window">
-        <field name="name">Donation Campaigns</field>
+        <field name="name">Campanii de Donații</field>
         <field name="res_model">donation.campaign</field>
         <field name="view_mode">list,form</field>
         <field name="context">{}</field>
@@ -46,16 +47,16 @@
         </field>
     </record>
 
-     <record id="action_donation" model="ir.actions.act_window">
-        <field name="name">Donation Campaigns</field>
+    <!-- Acțiune pentru Donații -->
+    <record id="action_donation" model="ir.actions.act_window">
+        <field name="name">Donații</field>
         <field name="res_model">donation.donation</field>
         <field name="view_mode">list,form</field>
         <field name="context">{}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                Înregistrează prima ta campanie.
+                Înregistrează prima ta donație.
             </p>
         </field>
     </record>
-
 </odoo>

@@ -117,7 +117,8 @@
                         string="Import volunteer data" 
                         type="action"
                         name="%(action_volunteer_data_wizard)d"
-                        class="oe_highlight"/>
+                        class="oe_highlight"
+                         groups="wisdom_hr_employee.group_res_voluntar"/>
                 </xpath>
             </field>
         </record>
