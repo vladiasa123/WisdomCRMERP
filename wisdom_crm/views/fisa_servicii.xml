@@ -1,0 +1,51 @@
+<odoo>
+    <!-- Tree View for Fise de Servicii -->
+    <record id="view_fisa_servicii_tree" model="ir.ui.view">
+        <field name="name">fisa.servicii.list</field>
+        <field name="model">fisa.servicii</field>
+        <field name="arch" type="xml">
+            <list string="Fise de Servicii">
+                <field name="activitate"/>
+                <field name="numar_fisa"/>
+                <field name="tema"/>
+                <field name="luna_an"/>
+                <field name="document" filename="filename"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View for Fise de Servicii -->
+    <record id="view_fisa_servicii_form" model="ir.ui.view">
+        <field name="name">fisa.servicii.form</field>
+        <field name="model">fisa.servicii</field>
+        <field name="arch" type="xml">
+            <form string="Fisa de Servicii">
+                <sheet>
+                    <group>
+                        <field name="beneficiar_id"/>
+                        <field name="activitate"/>
+                        <field name="numar_fisa"/>
+                        <field name="tema"/>
+                        <field name="luna_an"/>
+                        <field name="document" filename="filename"/>
+                    </group>
+                    <group>
+                        <field name="beneficiar_id" invisible="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_fisa_servicii" model="ir.actions.act_window">
+        <field name="name">Fise de Servicii</field>
+        <field name="res_model">fisa.servicii</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_fisa_servicii_root" name="Fise de Servicii"
+              parent="menu_activitati_beneficiari" action="action_fisa_servicii"
+              sequence="20"/>
+
+</odoo>

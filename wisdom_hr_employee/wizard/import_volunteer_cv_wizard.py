@@ -1,11 +1,10 @@
 from odoo import models, fields, api, _
 import base64
-import tempfile
 import mimetypes
 import logging
+import imghdr
 
 _logger = logging.getLogger(__name__)
-
 
 class ImportVolunteerWizard(models.TransientModel):
     _name = 'res.users.import.wizard'
@@ -21,18 +20,35 @@ class ImportVolunteerWizard(models.TransientModel):
         if not self.file:
             raise ValueError(_("Please upload a file."))
 
-        # Decode to bytes
+        # Decode Base64 file
         file_bytes = base64.b64decode(self.file)
 
         # Detect MIME type from filename
-        mime_type, _ = mimetypes.guess_type(self.filename or "")
-        if not mime_type:
-            # Default to PDF if undetectable
-            mime_type = "application/pdf"
+        if self.filename:
+            mime_type, _ = mimetypes.guess_type(self.filename)
+        else:
+            # detect from content
+            image_type = imghdr.what(None, h=file_bytes)
+            if image_type == 'png':
+                mime_type = 'image/png'
+            elif image_type == 'jpeg':
+                mime_type = 'image/jpeg'
+            elif image_type == 'tiff':
+                mime_type = 'image/tiff'
+            else:
+                mime_type = 'application/pdf'
 
-        _logger.info("Uploading file %s (MIME: %s, %d bytes)",
-                    self.filename, mime_type, len(file_bytes))
+        # Ensure MIME type is supported by Document AI
+        supported_types = ["application/pdf", "image/png", "image/jpeg", "image/tiff"]
+        if mime_type not in supported_types:
+            raise ValueError(_("Unsupported file type: %s") % mime_type)
 
+        _logger.info(
+            "Uploading file %s (MIME: %s, %d bytes)",
+            self.filename, mime_type, len(file_bytes)
+        )
+
+        # Send file to Document AI processor
         try:
             extracted = active_user.process_document_sample(
                 project_id="779079627865",

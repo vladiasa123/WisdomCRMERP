@@ -1,0 +1,53 @@
+.acasa-container {
+    text-align: center;
+    padding: 50px;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.acasa-dashboard {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.dashboard-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 200px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+    background-color: #f0f8ff;
+}
+
+.card-icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+    color: #007bff; /* icon color */
+}
+
+.card-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.card-subtitle {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+}

@@ -46,7 +46,7 @@ class ResUsers(models.Model):
     # ------------------------------
     # Voluntar related (editable)
     # ------------------------------
-    voluntar_nume = fields.Char(related='voluntar_id.nume', string="Nume Voluntar", readonly=False)
+    voluntar_nume = fields.Char(related='voluntar_id.nume', string="Nume Voluntar", readonly=False, required=False)
     voluntar_email = fields.Char(related='voluntar_id.email', string="Email Voluntar", readonly=False)
     voluntar_telefon = fields.Char(related='voluntar_id.telefon', string="Telefon Voluntar", readonly=False)
     voluntar_data_nasterii = fields.Date(related='voluntar_id.data_nasterii', string="Data nașterii", readonly=False)
@@ -81,22 +81,72 @@ class ResUsers(models.Model):
     # ------------------------------
     # Document AI helper methods
     # ------------------------------
-    def extract_fields(document: documentai.Document) -> Dict[str, str]:
+    def extract_fields(self, document: documentai.Document) -> Dict[str, str]:
         """
-        Extracts entities from the Document AI response into a dict
-        where the key = entity type and value = mention text.
+        Extracts entities from Document AI response into a dict
+        and autofills voluntar fields.
         """
-        fields = {}
+        extracted = {}
         for entity in document.entities:
-            fields[entity.type_] = entity.mention_text
-        return fields
+            extracted[entity.type_] = entity.mention_text
+
+        _logger.info("Extracted entities: %s", extracted)
+
+        if self.user_type == 'voluntar':
+            vals = {}
+
+            # Full name
+            if 'Nume' in extracted:
+                # If the name contains both first and last, you can split
+                full_name = extracted['Nume'].strip()
+                vals['nume'] = full_name
+
+            # CNP
+            if 'CNP' in extracted:
+                vals['cnp'] = extracted['CNP']
+
+            # Address parsing (example)
+            if 'Adresa' in extracted:
+                # Assuming the address is like "Strada X, Nr Y, Oras, Judet"
+                address_parts = extracted['Adresa'].split(',')
+                if len(address_parts) >= 1:
+                    vals['strada'] = address_parts[0].strip()
+                if len(address_parts) >= 2:
+                    vals['numar'] = address_parts[1].strip()
+                if len(address_parts) >= 3:
+                    vals['oras'] = address_parts[2].strip()
+                if len(address_parts) >= 4:
+                    vals['judet'] = address_parts[3].strip()
+
+
+
+            # Serie / numar buletin
+            if 'SerieBuletin' in extracted:
+                vals['serie_buletin'] = extracted['SerieBuletin']
+            if 'NumarBuletin' in extracted:
+                vals['numar_buletin'] = extracted['NumarBuletin']
+
+            # Other optional fields (if AI extracts them)
+            if 'DataNasterii' in extracted:
+                vals['data_nasterii'] = extracted['DataNasterii']
+
+            # Create or update voluntar record
+            if not self.voluntar_id:
+                voluntar = self.env['res.voluntar'].create(vals)
+                self.voluntar_id = voluntar.id
+            else:
+                self.voluntar_id.write(vals)
+
+        return extracted
+
+
 
     def process_document_sample(
         self,
         project_id: str,
         location: str,
         processor_id: str,
-        file_blob: bytes,  # <-- changed from file_path
+        file_blob: bytes, 
         mime_type: str,
         field_mask: Optional[str] = None,
         processor_version_id: Optional[str] = None,

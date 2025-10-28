@@ -7,7 +7,7 @@ class Voluntar(models.Model):
 
     employee_id = fields.Many2one('hr.employee', string="Employee")
     user_id = fields.Many2one('res.users', string="Related User")
-    nume = fields.Char(string="Nume complet", size=100, required=True)
+    nume = fields.Char(string="Nume complet", size=100)
     email = fields.Char(string="Email", size=100)
     telefon = fields.Char(string="Telefon", size=20)
     oras = fields.Char(string="Oraș", size=50)

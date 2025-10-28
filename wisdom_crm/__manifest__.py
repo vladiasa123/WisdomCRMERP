@@ -17,7 +17,7 @@
         'views/beneficiar_curs_views.xml',
         'views/instrument_views.xml',
         'views/activitate.xml',
-        
+        'views/fisa_servicii.xml'
     ],
     'application': True,
     'installable': True,

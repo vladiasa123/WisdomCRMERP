@@ -1,0 +1,12 @@
+<odoo>
+
+    <record id="action_acasa_home" model="ir.actions.client">
+        <field name="name">Acasa</field>
+        <field name="tag">acasa.homepage</field>
+    </record>
+
+    <menuitem id="menu_acasa"
+              name="Acasa"
+              sequence="10"
+              action="action_acasa_home"/>
+</odoo>

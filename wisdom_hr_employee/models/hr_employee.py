@@ -43,7 +43,7 @@ class HrEmployee(models.Model):
     # ------------------------------
     # Voluntar related fields
     # ------------------------------
-    voluntar_nume = fields.Char(related='voluntar_id.nume', string="Nume Voluntar", readonly=True)
+    voluntar_nume = fields.Char(related='voluntar_id.nume', string="Nume Voluntar", readonly=True, required=False)
     voluntar_telefon = fields.Char(related='voluntar_id.telefon', string="Telefon Voluntar", readonly=True)
     voluntar_data_nasterii = fields.Date(related='voluntar_id.data_nasterii', string="Data nașterii", readonly=True)
     voluntar_cnp = fields.Char(related='voluntar_id.cnp', string="CNP", readonly=True)
@@ -80,6 +80,18 @@ class HrEmployee(models.Model):
     # 3. Daca vrei sa vezi datele donatorului, foloseste self.donator_id
     # 4. Daca vrei sa vezi datele voluntarului, foloseste self.voluntar_id
     # 5. Daca vrei sa vezi datele angajatului, foloseste self.angajat_id
+
+
+    def action_volunteer_data_wizard(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Import Volunteer Data',
+            'res_model': 'res.users.import.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {'default_user_id': self.id},
+        }
     
     def send_email_action(self):
         donator_name = self.nume

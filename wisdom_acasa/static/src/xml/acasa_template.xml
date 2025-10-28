@@ -1,0 +1,35 @@
+<templates>
+    <t t-name="acasa.Homepage">
+        <div class="acasa-container">
+            <h1>Bine ai venit!</h1>
+            <div class="acasa-dashboard">
+                <!-- CRM Button -->
+                <a class="dashboard-card" href="/web#action=318">
+                    <div class="card-icon">
+                        <i class="fa fa-users"></i>
+                    </div>
+                    <div class="card-title">CRM</div>
+                    <div class="card-subtitle">Gestionați clienții</div>
+                </a>
+
+                <!-- Donații Button -->
+                <a class="dashboard-card" href="/web#action=270">
+                    <div class="card-icon">
+                        <i class="fa fa-hand-holding-heart"></i>
+                    </div>
+                    <div class="card-title">Donații</div>
+                    <div class="card-subtitle">Vezi toate donațiile</div>
+                </a>
+
+                <!-- Evenimente Button -->
+                <a class="dashboard-card" href="/web#menu_id=menu_event_event">
+                    <div class="card-icon">
+                        <i class="fa fa-calendar-alt"></i>
+                    </div>
+                    <div class="card-title">Evenimente</div>
+                    <div class="card-subtitle">Urmărește evenimentele</div>
+                </a>
+            </div>
+        </div>
+    </t>
+</templates>

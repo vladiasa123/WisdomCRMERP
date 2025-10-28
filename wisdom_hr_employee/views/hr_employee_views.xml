@@ -115,8 +115,8 @@
                 <xpath expr="//page[@name='skills_resume']//div/*" position="inside">
                     <button 
                         string="Import volunteer data" 
-                        type="action"
-                        name="%(action_volunteer_data_wizard)d"
+                        type="object"
+                        name="action_volunteer_data_wizard"
                         class="oe_highlight"
                          groups="wisdom_hr_employee.group_res_voluntar"/>
                 </xpath>
