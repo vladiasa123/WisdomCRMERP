@@ -8,4 +8,4 @@ access_res_donator_admin,res.donator,model_res_donator,base.group_system,1,1,1,1
 access_res_angajat_admin,res.angajat,model_res_angajat,base.group_system,1,1,1,1
 access_res_voluntar_admin,res.voluntar,model_res_voluntar,base.group_system,1,1,1,1
 
-access_import_volunteer_wizard,res.users.import.wizard,model_res_users_import_wizard,wisdom_hr_employee.group_res_voluntar,1,1,1,0
+access_import_volunteer_wizard,res.users.import.wizard,model_res_users_import_wizard,base.group_system,1,1,1,0

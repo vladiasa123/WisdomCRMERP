@@ -3,32 +3,61 @@
         <div class="acasa-container">
             <h1>Bine ai venit!</h1>
             <div class="acasa-dashboard">
-                <!-- CRM Button -->
-                <a class="dashboard-card" href="/web#action=318">
+
+                <!-- Acasă -->
+                <a class="dashboard-card" href="/web#action=3">
                     <div class="card-icon">
-                        <i class="fa fa-users"></i>
+                        <i class="fa fa-home"></i>
                     </div>
-                    <div class="card-title">CRM</div>
-                    <div class="card-subtitle">Gestionați clienții</div>
+                    <div class="card-title">Acasă</div>
+                    <div class="card-subtitle">Panou principal</div>
                 </a>
 
-                <!-- Donații Button -->
+                <!-- CRM -->
                 <a class="dashboard-card" href="/web#action=270">
                     <div class="card-icon">
-                        <i class="fa fa-hand-holding-heart"></i>
+                        <i class="fa fa-address-book"></i>
                     </div>
-                    <div class="card-title">Donații</div>
-                    <div class="card-subtitle">Vezi toate donațiile</div>
+                    <div class="card-title">CRM</div>
+                    <div class="card-subtitle">Gestionează clienții și oportunitățile</div>
                 </a>
 
-                <!-- Evenimente Button -->
-                <a class="dashboard-card" href="/web#menu_id=menu_event_event">
+                <!-- Donații -->
+                <a class="dashboard-card" href="/web#action=266">
                     <div class="card-icon">
-                        <i class="fa fa-calendar-alt"></i>
+                       <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+                    </div>
+                    <div class="card-title">Donații</div>
+                    <div class="card-subtitle">Administrare donații și sponsori</div>
+                </a>
+
+                <!-- Evenimente -->
+                <a class="dashboard-card" href="/web#action=201">
+                    <div class="card-icon">
+                       <i class="fa fa-calendar" aria-hidden="true"></i>
                     </div>
                     <div class="card-title">Evenimente</div>
-                    <div class="card-subtitle">Urmărește evenimentele</div>
+                    <div class="card-subtitle">Organizează și urmărește evenimente</div>
                 </a>
+
+                <!-- Angajați -->
+                <a class="dashboard-card" href="/web#action=226">
+                    <div class="card-icon">
+                        <i class="fa fa-users" aria-hidden="true"></i>
+                    </div>
+                    <div class="card-title">Angajați</div>
+                    <div class="card-subtitle">Gestionare personal</div>
+                </a>
+
+                <!-- Prezențe -->
+                <a class="dashboard-card" href="/web#action=238">
+                    <div class="card-icon">
+                       <i class="fa fa-bookmark" aria-hidden="true"></i>
+                    </div>
+                    <div class="card-title">Prezențe</div>
+                    <div class="card-subtitle">Pontaj și evidență prezență</div>
+                </a>
+
             </div>
         </div>
     </t>

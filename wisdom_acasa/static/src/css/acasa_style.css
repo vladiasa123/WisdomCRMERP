@@ -1,8 +1,14 @@
 .acasa-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;   
+    align-items: center;      
+    min-height: 100vh;        
     text-align: center;
-    padding: 50px;
+    padding: 20px;
     font-family: "Segoe UI", Arial, sans-serif;
 }
+
 
 .acasa-dashboard {
     display: flex;
@@ -10,6 +16,11 @@
     flex-wrap: wrap;
     gap: 30px;
     margin-top: 40px;
+
+    /* ADĂUGAT PENTRU GRID DE 3 */
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .dashboard-card {
@@ -37,7 +48,7 @@
 .card-icon {
     font-size: 50px;
     margin-bottom: 15px;
-    color: #007bff; /* icon color */
+    color: #007bff;
 }
 
 .card-title {

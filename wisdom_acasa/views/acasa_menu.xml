@@ -7,6 +7,6 @@
 
     <menuitem id="menu_acasa"
               name="Acasa"
-              sequence="10"
+              sequence="1"
               action="action_acasa_home"/>
 </odoo>
