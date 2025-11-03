@@ -262,7 +262,7 @@ class ResUsers(models.Model):
                     })
                     user.donator_id = donator.id
                 self.env['hr.employee'].create({
-                    'name': user.donator_id.nume,
+                    'name': user.donator_id.nume or user.name or 'Unnamed',
                     'work_email': getattr(user.donator_id, 'email', False),
                     'user_type': 'donator',
                     'department_id': department_id,
@@ -294,7 +294,7 @@ class ResUsers(models.Model):
                     })
                     user.voluntar_id = voluntar.id
                 self.env['hr.employee'].create({
-                    'name': user.voluntar_id.nume,
+                    'name': user.voluntar_id.nume or user.name or 'Unnamed',
                     'work_email': user.voluntar_id.email,
                     'user_type': 'voluntar',
                     'department_id': department_id,
@@ -318,7 +318,7 @@ class ResUsers(models.Model):
                     })
                     user.angajat_id = angajat.id
                 self.env['hr.employee'].create({
-                    'name': f"{user.angajat_id.nume} {user.angajat_id.prenume}".strip(),
+                    'name': f"{user.angajat_id.nume} {user.angajat_id.prenume}".strip() or user.name or 'Unnamed',
                     'work_email': user.angajat_id.email,
                     'user_type': 'angajat',
                     'department_id': department_id,
@@ -327,3 +327,15 @@ class ResUsers(models.Model):
                 })
 
         return user
+
+    @api.onchange('voluntar_nume', 'donator_id', 'angajat_id')
+    def _onchange_update_employee_name(self):
+        for user in self:
+            employee = self.env['hr.employee'].search([('name', '=', user.name)], limit=1)
+            if employee:
+                if user.user_type == 'voluntar' and user.voluntar_nume:
+                    employee.name = user.voluntar_nume
+                elif user.user_type == 'donator' and user.nume:
+                    employee.name = user.nume
+                elif user.user_type == 'angajat':
+                    employee.name = f"{user.angajat_nume or ''} {user.angajat_prenume or ''}".strip()

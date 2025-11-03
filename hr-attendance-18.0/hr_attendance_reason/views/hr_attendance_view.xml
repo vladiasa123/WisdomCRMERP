@@ -40,10 +40,9 @@
         <field name="priority">500</field>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='check_in']" position="replace">
-                <field name="time_in" widget="float_time"/>
-            </xpath>
-            <xpath expr="//field[@name='check_out']" position="replace">
-                <field name="time_out" widget="float_time"/>
+            <field name="time_in" widget="float_time"/>
+            <field name="time_out" widget="float_time"/>
+            <field name="attendance_date"/>
             </xpath>
 
             <xpath expr="//field[@name='validated_overtime_hours']" position="replace"/>

@@ -23,6 +23,15 @@ class HrAttendance(models.Model):
 
     )
 
+    attendance_date = fields.Date(
+        string="Attendance Date",
+        default=fields.Date.context_today,
+        required=True,
+        tracking=True,
+        help="Select the date of attendance manually."
+    )
+
+
     event_pictures = fields.Many2many(
         'ir.attachment',
         'attendance_event_image_rel',   # relation table
@@ -88,14 +97,16 @@ class HrAttendance(models.Model):
         local = fields.Datetime.context_timestamp(self, dt)
         return local.hour + local.minute / 60.0
 
-    def _dt_from_float_today(self, hours_float):
+    def _dt_from_float_date(self, hours_float, date_value):
         tzname = self.env.context.get("tz") or self.env.user.tz or "UTC"
         tz = pytz.timezone(tzname)
-        now_local = datetime.now(tz)
+        # Convert chosen date to local datetime
+        date_local = datetime.combine(date_value, datetime.min.time())
         hh = int(hours_float)
         mm = int(round((hours_float - hh) * 60))
-        local_dt = now_local.replace(hour=hh, minute=mm, second=0, microsecond=0)
-        return local_dt.astimezone(pytz.UTC).replace(tzinfo=None)
+        local_dt = date_local.replace(hour=hh, minute=mm)
+        return tz.localize(local_dt).astimezone(pytz.UTC).replace(tzinfo=None)
+
 
     # ---- computes
     @api.depends('check_in')
@@ -108,14 +119,20 @@ class HrAttendance(models.Model):
         for rec in self:
             rec.time_out = rec._float_from_dt(rec.check_out) if rec.check_out else 0.0
 
-    # ---- inverses
     def _inverse_time_in(self):
         for rec in self:
-            rec.check_in = rec._dt_from_float_today(rec.time_in) if rec.time_in is not None else False
+            if rec.time_in is not None and rec.attendance_date:
+                rec.check_in = rec._dt_from_float_date(rec.time_in, rec.attendance_date)
+            else:
+                rec.check_in = False
 
     def _inverse_time_out(self):
         for rec in self:
-            rec.check_out = rec._dt_from_float_today(rec.time_out) if rec.time_out is not None else False
+            if rec.time_out is not None and rec.attendance_date:
+                rec.check_out = rec._dt_from_float_date(rec.time_out, rec.attendance_date)
+            else:
+                rec.check_out = False
+
 
     # ---- override write to block approvals
     def write(self, vals):
