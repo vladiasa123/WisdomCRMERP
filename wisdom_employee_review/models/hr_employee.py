@@ -40,7 +40,7 @@ class HrEmployee(models.Model):
         today_date = datetime.today().strftime("%d.%m.%Y")  # Format as dd.mm.yyyy
 
         # Path to the PDF template
-        template_path = "/home/vladiasa/testWisdom/odoo-18.0.post20250801/custom/wisdom_employee_review/data/Adeverinta voluntariat Procivitas.pdf"
+        template_path = "/odoo-18/Adeverinta voluntariat Procivitas.pdf"
 
         # Read PDF template safely into memory
         with open(template_path, "rb") as f:
