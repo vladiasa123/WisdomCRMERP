@@ -24,7 +24,7 @@ class HrEmployee(models.Model):
 
 
         # Path to your uploaded PDF template (place it in your module's /static/src/pdf/)
-        template_path = "/home/vladiasa/testWisdom/odoo-18.0.post20250801/custom/wisdom_employee_review/data/Adeverinta voluntariat Procivitas.pdf"
+        template_path = "/odoo-18/Adeverinta voluntariat Procivitas.pdf"
 
         # Read PDF template
         template_reader = PdfReader(open(template_path, "rb"))
