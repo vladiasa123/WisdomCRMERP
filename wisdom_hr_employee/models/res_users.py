@@ -291,6 +291,8 @@ class ResUsers(models.Model):
                         'status': vals.get('voluntar_status', ''),
                         'data_inregistrare': vals.get('voluntar_data_inregistrare', False),
                         'user_id': user.id,
+                        'date_from': vals.get('voluntar_date_from', False),
+                        'date_to': vals.get('voluntar_date_to', False)
                     })
                     user.voluntar_id = voluntar.id
                 self.env['hr.employee'].create({

@@ -32,22 +32,27 @@ class HrEmployee(models.Model):
         # Check for missing fields
         missing = [name for name, value in required_fields.items() if not value]
         if missing:
-            raise UserError(f"The following fields are required to generate the PDF:\n- " + "\n- ".join(missing))
+            raise UserError(
+                "The following fields are required to generate the PDF:\n- " +
+                "\n- ".join(missing)
+            )
 
         today_date = datetime.today().strftime("%d.%m.%Y")  # Format as dd.mm.yyyy
 
-        # Path to your uploaded PDF template
-        template_path = "/odoo-18/Adeverinta voluntariat Procivitas.pdf"
+        # Path to the PDF template
+        template_path = "/home/vladiasa/testWisdom/odoo-18.0.post20250801/custom/wisdom_employee_review/data/Adeverinta voluntariat Procivitas.pdf"
 
-        # Read PDF template
+        # Read PDF template safely into memory
         with open(template_path, "rb") as f:
-            template_reader = PdfReader(f)
+            template_bytes = f.read()
+        template_reader = PdfReader(io.BytesIO(template_bytes))
 
+        # Create overlay PDF with ReportLab
         packet = io.BytesIO()
         can = canvas.Canvas(packet, pagesize=A4)
         can.setFont("Helvetica", 11)
 
-        # Draw strings
+        # Draw employee data
         can.drawString(330, 470, self.name)
         can.drawString(60, 450, self.voluntar_oras)
         can.drawString(200, 450, self.voluntar_strada)
@@ -72,29 +77,29 @@ class HrEmployee(models.Model):
         writer = PdfWriter()
 
         for i, page in enumerate(template_reader.pages):
-            if i == 0:  # only overlay on first page
+            if i == 0:  # Only overlay the first page
                 page.merge_page(overlay_pdf.pages[0])
             writer.add_page(page)
 
-        # Save result in memory
+        # Save merged PDF in memory
         output_stream = io.BytesIO()
         writer.write(output_stream)
         output_stream.seek(0)
 
-        # Encode in base64
+        # Encode PDF for attachment
         file_content = base64.b64encode(output_stream.read())
 
-        # Create attachment to return
+        # Create Odoo attachment
         attachment = self.env['ir.attachment'].create({
             'name': f"Adeverinta_{self.name}.pdf",
             'type': 'binary',
             'datas': file_content,
             'res_model': self._name,
             'res_id': self.id,
-            'mimetype': 'application/pdf'
+            'mimetype': 'application/pdf',
         })
 
-        # Return file for download
+        # Return URL for download
         return {
             'type': 'ir.actions.act_url',
             'url': f"/web/content/{attachment.id}?download=true",
