@@ -112,13 +112,12 @@
             <field name="model">hr.employee</field>
             <field name="inherit_id" ref="hr_skills.hr_employee_view_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//page[@name='skills_resume']//div/*" position="inside">
+                <xpath expr="//header" position="inside">
                     <button 
-                        string="Import volunteer data" 
+                        string="Importa CV" 
                         type="object"
                         name="action_volunteer_data_wizard"
-                        class="oe_highlight"
-                         groups="wisdom_hr_employee.group_res_voluntar"/>
+                        class="oe_highlight"/>
                 </xpath>
             </field>
         </record>
