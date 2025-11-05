@@ -105,7 +105,7 @@ class HrEmployeeEvaluation(models.Model):
 
         template_path = self.env["ir.config_parameter"].sudo().get_param(
             "hr_employee_evaluation.template_path",
-            default="custom/wisdom_employee_review/static/template/Chestionar-evaluare-salariati-executie.xlsx",
+            default="/odoo-18/custom-addons/wisdom_employee_review/static/template/Chestionar-evaluare-salariati-executie.xlsx",
         )
         try:
             wb = load_workbook(template_path)

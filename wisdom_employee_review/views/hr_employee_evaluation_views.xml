@@ -25,7 +25,7 @@
         </header>
         <sheet>
           <group>
-            <field name="employee_id" readonly="1"/>
+            <field name="employee_id"/>
             <field name="date"/>
             <field name="total" readonly="1"/>
             <field name="average" readonly="1"/>
