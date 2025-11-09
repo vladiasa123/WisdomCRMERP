@@ -1,5 +1,6 @@
 <!-- views/donation_campaign_views.xml -->
 <odoo>
+
     <!-- Tree View pentru Campanii de Donații -->
     <record id="view_donation_campaign_tree" model="ir.ui.view">
         <field name="name">donation.campaign.list</field>
@@ -13,6 +14,8 @@
             </list>
         </field>
     </record>
+
+
 
     <record id="view_donation_campaign_form" model="ir.ui.view">
         <field name="name">donation.campaign.form</field>

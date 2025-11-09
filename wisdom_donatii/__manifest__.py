@@ -20,7 +20,8 @@
         'security/ir.model.access.csv',
         'views/donation_campaign_views.xml',
         'views/donation_view.xml',
-        'reports/donation_ai_report.xml',
+        'wizard/donations_ai_report.xml',
+
     ],
     'installable': True,
     "application": True,    

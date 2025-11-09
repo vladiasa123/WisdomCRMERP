@@ -9,3 +9,4 @@ access_res_angajat_admin,res.angajat,model_res_angajat,base.group_system,1,1,1,1
 access_res_voluntar_admin,res.voluntar,model_res_voluntar,base.group_system,1,1,1,1
 
 access_import_volunteer_wizard,res.users.import.wizard,model_res_users_import_wizard,base.group_system,1,1,1,0
+access_import_volunteer_wizard_cv,volunteer.data.wizard,model_volunteer_data_wizard,base.group_system,1,1,1,0

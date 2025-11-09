@@ -19,7 +19,6 @@ class VolunteerDataWizard(models.TransientModel):
 
     def extract_text_from_pdf(self, pdf_data):
         load_dotenv()
-        OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
         text = ""
         # pdf_data is base64-encoded binary from Odoo
         pdf_bytes = base64.b64decode(pdf_data)
@@ -29,6 +28,7 @@ class VolunteerDataWizard(models.TransientModel):
         return text.strip()
 
     def action_import(self):
+        OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
         text = self.extract_text_from_pdf(self.file_data)
         client = OpenAI(api_key=OPENAI_API_KEY)
 

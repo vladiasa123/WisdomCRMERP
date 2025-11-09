@@ -87,7 +87,7 @@ class HrEmployee(models.Model):
         return {
             'type': 'ir.actions.act_window',
             'name': 'Import Volunteer Data',
-            'res_model': 'res.users.import.wizard',
+            'res_model': 'volunteer.data.wizard',
             'view_mode': 'form',
             'target': 'new',
             'context': {'default_user_id': self.id},

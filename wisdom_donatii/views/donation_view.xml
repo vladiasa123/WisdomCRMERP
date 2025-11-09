@@ -24,6 +24,12 @@
         <field name="model">donation.donation</field>
         <field name="arch" type="xml">
             <list string="Donații" create="1" delete="0">
+            <header>
+                <button name="action_open_wizard"
+                        string="Generează Raport AI"
+                        type="object"
+                        class="btn-primary"/>
+             </header>
                 <field name="date"/>
                 <field name="donator_id" domain="[('status','=','activ')]"/>
                 <field name="donator_nume" invisible="1"/>

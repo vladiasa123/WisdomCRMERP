@@ -1,0 +1,17 @@
+<odoo>
+    <record id="view_donation_ai_report_form" model="ir.ui.view">
+        <field name="name">donation.ai.report.form</field>
+        <field name="model">donation.ai.report</field>
+        <field name="arch" type="xml">
+            <form string="Generare Raport AI">
+                <footer>
+                    <button string="Generează Raport AI"
+                            type="object"
+                            name="action_generate_ai_report"
+                            class="btn-primary"/>
+                    <button string="Anulează" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

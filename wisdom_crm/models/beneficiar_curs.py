@@ -4,7 +4,7 @@ class BeneficiarCurs(models.Model):
     _name = 'beneficiar.curs'
     _description = 'Alocare curs la beneficiar'
 
-    beneficiari_id = fields.Many2one(
+    beneficiari_id = fields.Many2many(
         'beneficiari.management', string='Beneficiar', required=True
     )
     curs_id = fields.Many2one(

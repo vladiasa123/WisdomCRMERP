@@ -36,6 +36,31 @@ class Donation(models.Model):
     donator_tip = fields.Selection(related="donator_id.tip", store=True, string="Tip Donator")
     donator_status = fields.Selection(related="donator_id.status", store=True, string="Status Donator")
 
+    
+
+            
+    def action_open_wizard(self):
+        if not self:
+            raise UserError("Nu ai selectat nicio donație.")
+
+        # Collect unique campaign IDs from selected donations
+        campaign_ids = self.mapped('campaign_id').ids
+        if not campaign_ids:
+            raise UserError("Donațiile selectate nu au campanii asociate.")
+
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Donations AI',
+            'res_model': 'donation.ai.report',
+            'view_mode': 'form',
+            'target': 'new',  # Odoo popup dialog
+            'context': {
+                'default_campaign_id': campaign_ids[0],  # optional default
+                'active_ids': campaign_ids,  # pass all selected campaigns to the wizard
+            },
+        }
+
+
     @api.constrains("amount")
     def _check_amount_positive(self):
         for rec in self:

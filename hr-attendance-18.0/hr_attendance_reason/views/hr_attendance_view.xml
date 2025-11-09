@@ -24,11 +24,11 @@
         <field name="inherit_id" ref="hr_attendance.hr_attendance_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='employee_id']" position="before">
-                <field name="attendance_type" widget="radio"/>
-                <field name="event_id" invisible="attendance_type != 'event'"/>
-                <field name="event_pictures" widget="many2many_binary" options="{'max_upload_size': 5*1024*1024}" invisible="attendance_type != 'event'"/>
-                <field name="event_documents" widget="many2many_binary" options="{'max_upload_size': 20*1024*1024}" invisible="attendance_type != 'event'"/>
-                <field name="event_description" placeholder="Enter a description or notes about the event…" invisible="attendance_type != 'event'"/>
+                <field name="attendance_type" widget="radio" string="Tip prezenta"/>
+                <field name="event_id" invisible="attendance_type != 'event'" string="Eveniment"/>
+                <field name="event_pictures" widget="many2many_binary" options="{'max_upload_size': 5*1024*1024}" invisible="attendance_type != 'event'" string="Imagini eveniment"/>
+                <field name="event_documents" widget="many2many_binary" options="{'max_upload_size': 20*1024*1024}" invisible="attendance_type != 'event'" string="Documente eveniment"/>
+                <field name="event_description" placeholder="Enter a description or notes about the event…" invisible="attendance_type != 'event'" string="Descriere eveniment"/>
             </xpath>
         </field>
     </record>
@@ -40,9 +40,9 @@
         <field name="priority">500</field>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='check_in']" position="replace">
-            <field name="time_in" widget="float_time"/>
-            <field name="time_out" widget="float_time"/>
-            <field name="attendance_date"/>
+            <field name="time_in" widget="float_time" string="Ora start"/>
+            <field name="time_out" widget="float_time" string="Ora final"/>
+            <field name="attendance_date" string="Data"/>
             </xpath>
 
             <xpath expr="//field[@name='validated_overtime_hours']" position="replace"/>
