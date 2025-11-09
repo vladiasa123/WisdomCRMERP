@@ -3,6 +3,7 @@ import logging
 from typing import Optional, Dict
 from google.api_core.client_options import ClientOptions
 from google.cloud import documentai  # type: ignore
+import re
 
 _logger = logging.getLogger(__name__)
 
@@ -22,11 +23,6 @@ class ResUsers(models.Model):
         string='User Type',
         default='voluntar',
     )
-
-    # attendance_enabled = fields.Boolean(
-    #     string="Attendance Enabled",
-    #     help="If checked, the user will be added to the Attendances group."
-    # )
 
     donator_id = fields.Many2one('res.donator', string="Donator")
     voluntar_id = fields.Many2one('res.voluntar', string="Voluntar")
@@ -57,15 +53,15 @@ class ResUsers(models.Model):
     voluntar_status = fields.Selection(related='voluntar_id.status', string="Status Voluntar", readonly=False)
     voluntar_data_inregistrare = fields.Datetime(related='voluntar_id.data_inregistrare', string="Data înregistrării", readonly=False)
     voluntar_strada = fields.Char(related='voluntar_id.strada', string="Stradă", readonly=False)
-    voluntar_numar = fields.Char(related='voluntar_id.numar', string=" Număr", readonly=False)
+    voluntar_numar = fields.Char(related='voluntar_id.numar', string="Număr", readonly=False)
     voluntar_judet = fields.Char(related='voluntar_id.judet', string="Județ", readonly=False)
     voluntar_serie_buletin = fields.Char(related='voluntar_id.serie_buletin', string="Serie buletin", readonly=False)
     voluntar_numar_buletin = fields.Char(related='voluntar_id.numar_buletin', string="Număr buletin", readonly=False)
     voluntar_oras = fields.Char(related='voluntar_id.oras', string="Oraș", readonly=False)
-    voluntar_date_from = fields.Date(related='voluntar_id.date_from', string="Disponibil din" ,  readonly=False)
-    voluntar_date_to = fields.Date(related='voluntar_id.date_to', string="Disponibil până la",   readonly=False)
+    voluntar_date_from = fields.Date(related='voluntar_id.date_from', string="Disponibil din", readonly=False)
+    voluntar_date_to = fields.Date(related='voluntar_id.date_to', string="Disponibil până la", readonly=False)
 
-    # ------------------------------ 
+    # ------------------------------
     # Angajat related (editable)
     # ------------------------------
     angajat_nume = fields.Char(related='angajat_id.nume', string="Nume", readonly=False)
@@ -86,104 +82,73 @@ class ResUsers(models.Model):
         Extracts entities from Document AI response into a dict
         and autofills voluntar fields.
         """
-        extracted = {}
-        for entity in document.entities:
-            extracted[entity.type_] = entity.mention_text
-
+        extracted = {entity.type_: entity.mention_text for entity in document.entities}
         _logger.info("Extracted entities: %s", extracted)
 
-        if self.user_type == 'voluntar':
-            vals = {}
+        if self.user_type != 'voluntar':
+            return extracted
 
-            # Full name
-            if 'Nume' in extracted:
-                # If the name contains both first and last, you can split
-                full_name = extracted['Nume'].strip()
-                vals['nume'] = full_name
+        vals = {}
 
-            # CNP
-            if 'CNP' in extracted:
-                vals['cnp'] = extracted['CNP']
+        # Name
+        if 'Nume' in extracted:
+            vals['nume'] = extracted['Nume'].strip()
+        if 'CNP' in extracted:
+            vals['cnp'] = extracted['CNP'].strip()
+        if 'DataNasterii' in extracted:
+            vals['data_nasterii'] = extracted['DataNasterii'].strip()
+        if 'SerieBuletin' in extracted:
+            vals['serie_buletin'] = extracted['SerieBuletin'].strip()
+        if 'NumarBuletin' in extracted:
+            vals['numar_buletin'] = extracted['NumarBuletin'].strip()
 
-            # Address parsing (example)
-            if 'Adresa' in extracted:
-                # Assuming the address is like "Strada X, Nr Y, Oras, Judet"
-                address_parts = extracted['Adresa'].split(',')
-                if len(address_parts) >= 1:
-                    vals['strada'] = address_parts[0].strip()
-                if len(address_parts) >= 2:
-                    vals['numar'] = address_parts[1].strip()
-                if len(address_parts) >= 3:
-                    vals['oras'] = address_parts[2].strip()
-                if len(address_parts) >= 4:
-                    vals['judet'] = address_parts[3].strip()
+        # Address parsing
+        address_text = extracted.get('Domiciliu')
+        if address_text:
+            address_text = address_text.replace('\n', ', ').replace(';', ',')
+            # Extract using regex: "Jud.AB Sat.Bistra (Com.Bistra), Str.Ion Creangă nr.2"
+            # Split into parts based on commas
+            parts = [p.strip() for p in address_text.split(',') if p.strip()]
+            if len(parts) >= 1:
+                vals['judet'] = re.search(r'Jud\.\s*([A-Z]+)', parts[0])
+                vals['judet'] = vals['judet'].group(1) if vals['judet'] else ''
+                vals['oras'] = parts[0].replace(f"Jud.{vals['judet']}", '').strip()
+            if len(parts) >= 2:
+                vals['strada'] = parts[1]
+            if len(parts) >= 3:
+                vals['numar'] = parts[2]
 
-
-
-            # Serie / numar buletin
-            if 'SerieBuletin' in extracted:
-                vals['serie_buletin'] = extracted['SerieBuletin']
-            if 'NumarBuletin' in extracted:
-                vals['numar_buletin'] = extracted['NumarBuletin']
-
-            # Other optional fields (if AI extracts them)
-            if 'DataNasterii' in extracted:
-                vals['data_nasterii'] = extracted['DataNasterii']
-
-            # Create or update voluntar record
-            if not self.voluntar_id:
-                voluntar = self.env['res.voluntar'].create(vals)
-                self.voluntar_id = voluntar.id
-            else:
-                self.voluntar_id.write(vals)
+        # Create or update voluntar
+        if not self.voluntar_id:
+            voluntar = self.env['res.voluntar'].create(vals)
+            self.voluntar_id = voluntar.id
+        else:
+            self.voluntar_id.write(vals)
 
         return extracted
-
-
 
     def process_document_sample(
         self,
         project_id: str,
         location: str,
         processor_id: str,
-        file_blob: bytes, 
+        file_blob: bytes,
         mime_type: str,
         field_mask: Optional[str] = None,
         processor_version_id: Optional[str] = None,
     ) -> Dict[str, str]:
-        """
-        Process a document using Document AI, from an uploaded blob (binary content).
-        file_blob: should be raw bytes (decoded from base64 if coming from Odoo Binary field)
-        """
         opts = ClientOptions(api_endpoint=f"{location}-documentai.googleapis.com")
         client = documentai.DocumentProcessorServiceClient(client_options=opts)
 
-        # Choose processor or processor version
-        if processor_version_id:
-            name = client.processor_version_path(project_id, location, processor_id, processor_version_id)
-        else:
-            name = client.processor_path(project_id, location, processor_id)
+        name = client.processor_version_path(project_id, location, processor_id, processor_version_id) \
+            if processor_version_id else client.processor_path(project_id, location, processor_id)
 
-        # Send directly the binary blob to Document AI
         raw_document = documentai.RawDocument(content=file_blob, mime_type=mime_type)
-
-        request = documentai.ProcessRequest(
-            name=name,
-            raw_document=raw_document,
-            field_mask=field_mask,
-        )
-
+        request = documentai.ProcessRequest(name=name, raw_document=raw_document, field_mask=field_mask)
         result = client.process_document(request=request)
-        document = result.document
-
-        extracted = self.extract_fields(document)
-        _logger.info("Extracted entities: %s", extracted)
-        return extracted
+        return self.extract_fields(result.document)
 
     def action_read_id(self, file_blob: bytes, mime_type: str):
-        """
-        Wrapper to process uploaded file blob from wizard.
-        """
         return self.process_document_sample(
             project_id="779079627865",
             location="eu",
@@ -192,53 +157,28 @@ class ResUsers(models.Model):
             mime_type=mime_type,
         )
 
-    if __name__ == "__main__":
-        action_read_id()
-
     # ------------------------------
-    # Overrides
+    # Overrides & Related Records
     # ------------------------------
     @api.model
     def create(self, vals):
         user = super().create(vals)
-
-        # Assign the strict group set ONLY for 'angajat'
         if user.user_type in ('angajat', 'voluntar', 'donator'):
             self._apply_angajat_default_groups(user)
-
-        # Continue your logic
         user._create_related_records(vals)
         return user
 
-    # ------------------------------
-    # Group assignment for 'angajat'
-    # ------------------------------
     def _apply_angajat_default_groups(self, user):
-        """
-        Replace user's groups with the exact set required for 'angajat'.
-        Adjust XML IDs if your DB differs.
-        """
         xmlids = [
             'base.group_allow_export',
             'base.group_user',
             'account.group_multi_currency',
             'base.group_no_one',
         ]
-
-        group_ids = []
-        for xid in xmlids:
-            g = self.env.ref(xid, raise_if_not_found=False)
-            if g:
-                group_ids.append(g.id)
-            else:
-                _logger.warning("Default angajat group XML-ID not found: %s", xid)
-
+        group_ids = [g.id for xid in xmlids if (g := self.env.ref(xid, raise_if_not_found=False))]
         if group_ids:
             user.write({'groups_id': [(6, 0, group_ids)]})
 
-    # ------------------------------
-    # Related record + employee creation
-    # ------------------------------
     def _create_related_records(self, vals):
         for user in self:
             department_id = False
@@ -256,14 +196,6 @@ class ResUsers(models.Model):
                         'user_id': user.id,
                     })
                     user.donator_id = donator.id
-                self.env['hr.employee'].create({
-                    'name': user.donator_id.nume or user.name or 'Unnamed',
-                    'work_email': getattr(user.donator_id, 'email', False),
-                    'user_type': 'donator',
-                    'department_id': department_id,
-                    'user_id': user.id,
-                    'donator_id': user.donator_id.id,
-                })
 
             elif user.user_type == 'voluntar':
                 department_id = self.env['hr.department'].search([('name', '=', 'Voluntar')], limit=1).id
@@ -290,14 +222,6 @@ class ResUsers(models.Model):
                         'date_to': vals.get('voluntar_date_to', False)
                     })
                     user.voluntar_id = voluntar.id
-                self.env['hr.employee'].create({
-                    'name': user.voluntar_id.nume or user.name or 'Unnamed',
-                    'work_email': user.voluntar_id.email,
-                    'user_type': 'voluntar',
-                    'department_id': department_id,
-                    'user_id': user.id,
-                    'voluntar_id': user.voluntar_id.id,
-                })
 
             elif user.user_type == 'angajat':
                 department_id = self.env['hr.department'].search([('name', '=', 'Angajat')], limit=1).id
@@ -314,16 +238,8 @@ class ResUsers(models.Model):
                         'user_id': user.id,
                     })
                     user.angajat_id = angajat.id
-                self.env['hr.employee'].create({
-                    'name': f"{user.angajat_id.nume} {user.angajat_id.prenume}".strip() or user.name or 'Unnamed',
-                    'work_email': user.angajat_id.email,
-                    'user_type': 'angajat',
-                    'department_id': department_id,
-                    'user_id': user.id,
-                    'angajat_id': user.angajat_id.id,
-                })
 
-        return user
+        return self
 
     @api.onchange('voluntar_nume', 'donator_id', 'angajat_id')
     def _onchange_update_employee_name(self):

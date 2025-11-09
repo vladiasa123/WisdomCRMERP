@@ -24,7 +24,7 @@
                     </group>
 
                         <button 
-                            string="Import volunteer data"
+                            string="Import date voluntar"
                             type="action"
                             name="%(action_import_volunteer_wizard)d"
                             class="oe_highlight"
