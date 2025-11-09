@@ -21,7 +21,6 @@
         'views/donation_campaign_views.xml',
         'views/donation_view.xml',
         'wizard/donations_ai_report.xml',
-
     ],
     'installable': True,
     "application": True,    

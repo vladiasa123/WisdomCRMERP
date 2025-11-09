@@ -203,7 +203,7 @@ class ResUsers(models.Model):
         user = super().create(vals)
 
         # Assign the strict group set ONLY for 'angajat'
-        if user.user_type in ('angajat', 'voluntar'):
+        if user.user_type in ('angajat', 'voluntar', 'donator'):
             self._apply_angajat_default_groups(user)
 
         # Continue your logic
@@ -220,14 +220,9 @@ class ResUsers(models.Model):
         """
         xmlids = [
             'base.group_allow_export',
-            'hr_attendance_reason.group_hr_attendance_user',
             'base.group_user',
             'account.group_multi_currency',
-            'hr.group_hr_user',
-            'hr_attendance.group_hr_attendance_officer',
             'base.group_no_one',
-            'hr_attendance.group_hr_attendance_own_reader',
-            'event.group_event_registration_desk'
         ]
 
         group_ids = []

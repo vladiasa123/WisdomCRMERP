@@ -1,3 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_donation_admin,donation.donation admin,model_donation_donation,base.group_system,1,1,1,1
 access_donation_campaign_admin,donation.campaign admin,model_donation_campaign,base.group_system,1,1,1,1
+access_donation_ai_report_admin,donation.ai.report admin,model_donation_ai_report,base.group_system,1,1,1,1
+
+access_donation_donator,donation.donation donator,model_donation_donation,wisdom_hr_employee.group_res_donator,1,1,1,1
+access_donation_campaign_donator,donation.campaign donator,model_donation_campaign,wisdom_hr_employee.group_res_donator,1,1,1,1
+access_donation_ai_report_donator,donation.ai.report donator,model_donation_ai_report,wisdom_hr_employee.group_res_donator,1,1,1,1
+

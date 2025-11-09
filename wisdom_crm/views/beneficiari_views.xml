@@ -5,6 +5,12 @@
         <field name="model">beneficiari.management</field>
         <field name="arch" type="xml">
             <list string="Beneficiaries">
+                <header>
+                        <button name="action_export_all_data"
+                    string="Exportă toate datele"
+                    type="object"
+                    class="btn-primary"/>
+                </header>
                 <field name="nume"/>
                 <field name="prenume"/>
                 <field name="telefon"/>

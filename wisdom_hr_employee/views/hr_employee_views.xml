@@ -1,6 +1,27 @@
 <odoo>
     <data>
 
+        <record id="view_employee_list_inherit_groups" model="ir.ui.view">
+            <field name="name">hr.employee.list.inherit.groups</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>
+            <field name="arch" type="xml">
+
+                <!-- Insert after job_id field -->
+                <xpath expr="//field[@name='job_id']" position="after">
+
+                    <field name="has_hr_access" widget="boolean_toggle" string="HR Access"/>
+                    <field name="has_event_access" widget="boolean_toggle" string="Event Access"/>
+
+                    <!-- Wisdom Group Accesses -->
+                    <field name="has_wisdom_donator_access" widget="boolean_toggle" string="Donator Access"/>
+                    <field name="has_wisdom_angajat_access" widget="boolean_toggle" string="Angajat Access"/>
+                    <field name="has_wisdom_voluntar_access" widget="boolean_toggle" string="Voluntar Access"/>
+
+                </xpath>
+            </field>
+    </record>
+
         <!-- Inherit Employee Form -->
         <record id="view_employee_form_inherit_extended" model="ir.ui.view">
             <field name="name">hr.employee.form.inherit.extended</field>

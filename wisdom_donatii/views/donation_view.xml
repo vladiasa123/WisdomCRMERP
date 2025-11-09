@@ -13,7 +13,7 @@
     </record>
 
     <!-- Meniu Donații -->
-    <menuitem id="menu_donations_root" name="Donații" sequence="20"/>
+    <menuitem id="menu_donations_root" name="Donații" sequence="20" groups="wisdom_hr_employee.group_res_donator,base.group_system"/>
     <menuitem id="menu_donations_all" name="Toate Donațiile" parent="menu_donations_root" action="action_donation_campaigns" sequence="10"/>
     <menuitem id="menu_donations_list" name="Toate Campaniile" parent="menu_donations_all" action="action_donation_campaigns" sequence="1"/>
     <menuitem id="menu_donations" name="Toate Donațiile" parent="menu_donations_all" action="action_donation" sequence="2"/>
