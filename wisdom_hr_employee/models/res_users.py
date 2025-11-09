@@ -42,7 +42,7 @@ class ResUsers(models.Model):
     # ------------------------------
     # Voluntar related (editable)
     # ------------------------------
-    voluntar_nume = fields.Char(related='voluntar_id.nume', string="Nume Voluntar", readonly=False, required=False)
+    voluntar_nume = fields.Char(related='voluntar_id.nume', string="Nume Voluntar", readonly=False)
     voluntar_email = fields.Char(related='voluntar_id.email', string="Email Voluntar", readonly=False)
     voluntar_telefon = fields.Char(related='voluntar_id.telefon', string="Telefon Voluntar", readonly=False)
     voluntar_data_nasterii = fields.Date(related='voluntar_id.data_nasterii', string="Data nașterii", readonly=False)
@@ -78,10 +78,6 @@ class ResUsers(models.Model):
     # Document AI helper methods
     # ------------------------------
     def extract_fields(self, document: documentai.Document) -> Dict[str, str]:
-        """
-        Extracts entities from Document AI response into a dict
-        and autofills voluntar fields.
-        """
         extracted = {entity.type_: entity.mention_text for entity in document.entities}
         _logger.info("Extracted entities: %s", extracted)
 
@@ -90,7 +86,7 @@ class ResUsers(models.Model):
 
         vals = {}
 
-        # Name
+        # Name fields
         if 'Nume' in extracted:
             vals['nume'] = extracted['Nume'].strip()
         if 'CNP' in extracted:
@@ -106,12 +102,10 @@ class ResUsers(models.Model):
         address_text = extracted.get('Domiciliu')
         if address_text:
             address_text = address_text.replace('\n', ', ').replace(';', ',')
-            # Extract using regex: "Jud.AB Sat.Bistra (Com.Bistra), Str.Ion Creangă nr.2"
-            # Split into parts based on commas
             parts = [p.strip() for p in address_text.split(',') if p.strip()]
             if len(parts) >= 1:
-                vals['judet'] = re.search(r'Jud\.\s*([A-Z]+)', parts[0])
-                vals['judet'] = vals['judet'].group(1) if vals['judet'] else ''
+                judet_match = re.search(r'Jud\.\s*([A-Z]+)', parts[0])
+                vals['judet'] = judet_match.group(1) if judet_match else ''
                 vals['oras'] = parts[0].replace(f"Jud.{vals['judet']}", '').strip()
             if len(parts) >= 2:
                 vals['strada'] = parts[1]
@@ -139,10 +133,8 @@ class ResUsers(models.Model):
     ) -> Dict[str, str]:
         opts = ClientOptions(api_endpoint=f"{location}-documentai.googleapis.com")
         client = documentai.DocumentProcessorServiceClient(client_options=opts)
-
         name = client.processor_version_path(project_id, location, processor_id, processor_version_id) \
             if processor_version_id else client.processor_path(project_id, location, processor_id)
-
         raw_document = documentai.RawDocument(content=file_blob, mime_type=mime_type)
         request = documentai.ProcessRequest(name=name, raw_document=raw_document, field_mask=field_mask)
         result = client.process_document(request=request)
@@ -182,6 +174,19 @@ class ResUsers(models.Model):
     def _create_related_records(self, vals):
         for user in self:
             department_id = False
+
+            # Determine default name safely
+            name = (
+                getattr(user.voluntar_id, 'nume', '') or
+                getattr(user.donator_id, 'nume', '') or
+                f"{user.angajat_nume or ''} {user.angajat_prenume or ''}".strip() or
+                user.name or
+                'Unnamed'
+            )
+
+            # ------------------------------
+            # Donator
+            # ------------------------------
             if user.user_type == 'donator':
                 department_id = self.env['hr.department'].search([('name', '=', 'Donator')], limit=1).id
                 if not user.donator_id:
@@ -196,7 +201,18 @@ class ResUsers(models.Model):
                         'user_id': user.id,
                     })
                     user.donator_id = donator.id
+                self.env['hr.employee'].create({
+                    'name': name,
+                    'work_email': getattr(user.donator_id, 'email', False),
+                    'user_type': 'donator',
+                    'department_id': department_id,
+                    'user_id': user.id,
+                    'donator_id': user.donator_id.id,
+                })
 
+            # ------------------------------
+            # Voluntar
+            # ------------------------------
             elif user.user_type == 'voluntar':
                 department_id = self.env['hr.department'].search([('name', '=', 'Voluntar')], limit=1).id
                 if not user.voluntar_id:
@@ -222,7 +238,18 @@ class ResUsers(models.Model):
                         'date_to': vals.get('voluntar_date_to', False)
                     })
                     user.voluntar_id = voluntar.id
+                self.env['hr.employee'].create({
+                    'name': name,
+                    'work_email': user.voluntar_id.email,
+                    'user_type': 'voluntar',
+                    'department_id': department_id,
+                    'user_id': user.id,
+                    'voluntar_id': user.voluntar_id.id,
+                })
 
+            # ------------------------------
+            # Angajat
+            # ------------------------------
             elif user.user_type == 'angajat':
                 department_id = self.env['hr.department'].search([('name', '=', 'Angajat')], limit=1).id
                 if not user.angajat_id:
@@ -238,13 +265,24 @@ class ResUsers(models.Model):
                         'user_id': user.id,
                     })
                     user.angajat_id = angajat.id
+                self.env['hr.employee'].create({
+                    'name': name,
+                    'work_email': user.angajat_id.email,
+                    'user_type': 'angajat',
+                    'department_id': department_id,
+                    'user_id': user.id,
+                    'angajat_id': user.angajat_id.id,
+                })
 
         return self
 
+    # ------------------------------
+    # Onchange for employee name sync
+    # ------------------------------
     @api.onchange('voluntar_nume', 'donator_id', 'angajat_id')
     def _onchange_update_employee_name(self):
         for user in self:
-            employee = self.env['hr.employee'].search([('name', '=', user.name)], limit=1)
+            employee = self.env['hr.employee'].search([('user_id', '=', user.id)], limit=1)
             if employee:
                 if user.user_type == 'voluntar' and user.voluntar_nume:
                     employee.name = user.voluntar_nume
