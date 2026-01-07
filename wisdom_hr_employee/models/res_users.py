@@ -203,7 +203,7 @@ class ResUsers(models.Model):
                     user.donator_id = donator.id
                 self.env['hr.employee'].create({
                     'name': name,
-                    'work_email': getattr(user.donator_id, 'email', False),
+                    'work_email': user.email,
                     'user_type': 'donator',
                     'department_id': department_id,
                     'user_id': user.id,
@@ -240,7 +240,7 @@ class ResUsers(models.Model):
                     user.voluntar_id = voluntar.id
                 self.env['hr.employee'].create({
                     'name': name,
-                    'work_email': user.voluntar_id.email,
+                    'work_email': user.email,
                     'user_type': 'voluntar',
                     'department_id': department_id,
                     'user_id': user.id,
@@ -267,7 +267,7 @@ class ResUsers(models.Model):
                     user.angajat_id = angajat.id
                 self.env['hr.employee'].create({
                     'name': name,
-                    'work_email': user.angajat_id.email,
+                    'work_email': user.email,
                     'user_type': 'angajat',
                     'department_id': department_id,
                     'user_id': user.id,
