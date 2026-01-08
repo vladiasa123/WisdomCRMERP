@@ -4,10 +4,10 @@ class ResAngajat(models.Model):
     _name = 'res.angajat'
     _description = 'Angajat'
 
-    employee_id = fields.Many2one('hr.employee', string="Employee")
+    employee_id = fields.Many2one('hr.employee', string="Employee" )
     user_id = fields.Many2one('res.users', string="User")
-    nume = fields.Char(string="Nume", required=True)
-    prenume = fields.Char(string="Prenume", required=True)
+    nume = fields.Char(string="Nume")
+    prenume = fields.Char(string="Prenume")
     cnp = fields.Char(string="CNP", size=13)
     email = fields.Char(string="Email")
     telefon = fields.Char(string="Telefon")
