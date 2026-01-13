@@ -73,7 +73,7 @@ Analizează-le și răspunde cu un JSON de forma:
 Scrie în limba română, fara diacritice. Fără explicații suplimentare, doar JSON valid.
 """
 
-        api_key = os.getenv("OPENAI_API_KEY_HR")
+        api_key = os.getenv("OPENAI_API_KEY")
         if not api_key:
             raise UserError("Lipsește cheia OPENAI_API_KEY_HR în mediul serverului Odoo.")
 
